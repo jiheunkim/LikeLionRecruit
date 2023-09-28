@@ -8,6 +8,7 @@ function Exhibition() {
   return (
       <>
       Exhibition
+      Skrt
       </>
   );
 }
