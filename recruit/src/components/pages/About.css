@@ -1,0 +1,141 @@
+.about-page{
+    background: #EDEBEB;
+    display: flex;
+    justify-content: center; 
+    flex-direction: column;
+    align-items: center;
+    height: 100%; 
+
+    padding-top: 84px;
+}
+
+.link-box{
+    position: relative;
+}
+
+.link-box .group19{
+    width: 752px;
+    height: 626px;
+    flex-shrink: 0;
+}
+
+.overlay-title {
+    color: #000;
+    font-family: DNF Bit Bit TTF;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    position: absolute; 
+    top: 80px; 
+    left: 315px;
+  }
+
+.insta-img{
+    position: absolute; 
+    top: 189px; 
+    left: 325px;
+    cursor: pointer;
+
+    width: 99px;
+    height: 99px;
+    flex-shrink: 0;
+}
+
+.insta-text{
+    position: absolute; 
+    color: #000;
+    font-family: Pretendard Variable;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.9px;
+
+    top: 279px; 
+    left:261px;
+}
+
+
+.linktree-text{
+    position: absolute; 
+    color: #000;
+    font-family: Pretendard Variable;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    top: 520px;
+    left: 252px;
+}
+
+
+
+.linktree-img{
+    position: absolute; 
+    width: 1%;
+    top: 421px; 
+    left: 332px;
+    cursor: pointer;
+
+    width: 88px;
+    height: 107px;
+    flex-shrink: 0;
+}
+
+.credit{
+     margin-top: 20px;
+     display: flex;
+     flex-direction: column; 
+     align-items: center; 
+     text-align: center; 
+     height: 100vh; 
+   }
+
+.credit .title
+{
+    color: #000;
+    font-family: Galmuri9;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 100px;
+}
+   
+
+.credit .sub-title{
+    color: #000;
+    text-align: center;
+    font-family: Pretendard Variable;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 3.96px;
+    margin-top: 50px;
+}
+   
+.credit .sub-heading{
+    color: #000;
+    text-align: center;
+    font-family: Pretendard Variable;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top:30px;
+}
+   
+.credit .name{
+    color: #000;
+    text-align: center;
+    font-family: Pretendard Variable;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+   
