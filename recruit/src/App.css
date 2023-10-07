@@ -7,6 +7,23 @@
   pointer-events: none;
 }
 
+@font-face {
+  font-family: "DNFBitBit";
+  src: url("./font/DNFBitBit.ttf");
+}
+@font-face {
+  font-family: "DOSI";
+  src: url("./font/DOSIyagiBoldface.ttf");
+}
+@font-face {
+  font-family: "Galmuri9";
+  src: url("./font/Galmuri9.ttf");
+}
+@font-face {
+  font-family: "PretendardVariable";
+  src: url("./font/PretendardVariable.ttf");
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
