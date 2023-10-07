@@ -23,6 +23,17 @@ const ButtonContainer = styled.div`
 }
 `;
 
+const TextBox = styled.div`
+  font-family: "DNFBitBit";
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 43px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 55px; 
+  margin-bottom : 70px; 
+`;
+
 function Exhibition() {
   const [activeButton, setActiveButton] = useState('11기');
 
@@ -49,6 +60,7 @@ function Exhibition() {
                   {"13기"}
               </Button>
               </ButtonContainer>
+              <TextBox>{"PROJECT"}</TextBox>
               <Slider></Slider>
       </div>
       </>
