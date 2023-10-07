@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import styled from 'styled-components';
+import Slider from '../Slider';
 
 const Button = styled.button`
   width: 100px;
@@ -48,6 +49,7 @@ function Exhibition() {
                   {"13기"}
               </Button>
               </ButtonContainer>
+              <Slider></Slider>
       </div>
       </>
   );
