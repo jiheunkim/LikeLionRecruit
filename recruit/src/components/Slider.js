@@ -19,14 +19,14 @@ const Button = styled.button`
 `;
 
 const LeftButton = styled(Button)`
-  background-image: url('image/buttonL2.png');
+  background-image: url('image/buttonL5.png');
   border: 0;
   margin-right: 350px;
   background-color: transparent;
 `;
 
 const RightButton = styled(Button)`
-  background-image: url('image/buttonR2.png');
+  background-image: url('image/buttonR5.png');
   border: 0;
   margin-left: 350px;
   background-color: transparent;
@@ -36,7 +36,6 @@ const Image = styled.img`
   width: 768px;
   height: 408px;
   object-fit: contain;
-  background-color: blue;
 `;
 
 const getTouches = (evt) => {
@@ -52,7 +51,6 @@ export default class Slider extends Component {
     showNavigation: false,
     enableSwipe: true,
     config: config.stiff,
-    displayYear: '',
     slides: []
   };
 
@@ -116,37 +114,15 @@ export default class Slider extends Component {
     this.setState({goToSlide});
   };
 
-
-  setDisplayYearFromProps = (year) => {
-    let displayYear;
-
-    switch(year) {
-      case 'year11th':
-        displayYear = '11기';
-        break;
-      case 'year12th':
-        displayYear = '12기';
-        break;
-      case 'year13th':
-        displayYear = '13기';
-        break;
-      default:
-        displayYear = '';
-    }
-
-    this.setState({displayYear});
-  }
   
     async componentDidMount() {
       const year = this.props.year || 'year11th';
-      await this.setDisplayYearFromProps(year);
       await this.setSlidesFromData(year);
    }
  
    async componentDidUpdate(prevProps) {
      if(prevProps.year !== this.props.year) {
        const year = this.props.year || 'year11th';
-       await this.setDisplayYearFromProps(year);
        await this.setSlidesFromData(year);
      }
    }
@@ -187,8 +163,7 @@ export default class Slider extends Component {
                   height: "500px", 
                   margin: "0 auto", 
                   textAlign: "center", 
-                  position: "relative", 
-                  backgroundColor: "purple"}}
+                  position: "relative"}}
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouchMove}
         >
@@ -200,7 +175,6 @@ export default class Slider extends Component {
           <LeftButton onClick ={this.handlePrevSlide} />
           <RightButton onClick ={this.handleNextSlide} />
         </ButtonContainer>
-        <h2>{`${this.state.displayYear} 데이터를 받아왔습니다.`}</h2>
       </div>
     );
   }
