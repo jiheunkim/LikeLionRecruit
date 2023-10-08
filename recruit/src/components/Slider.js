@@ -54,7 +54,6 @@ export default class Slider extends Component {
     slides: []
   };
 
-
   onChangeInput = (e) => {
     this.setState({
       [e.target.name]: parseInt(e.target.value, 10) || 0

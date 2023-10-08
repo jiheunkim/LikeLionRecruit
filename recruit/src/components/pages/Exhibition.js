@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../../App.css';
 import styled from 'styled-components';
 import Slider from '../Slider';
+import Footer from '../Footer';
 
 const Button = styled.button`
   width: 100px;
@@ -31,7 +32,7 @@ const TextBox = styled.div`
   letter-spacing: 0em;
   text-align: center;
   margin-top: 55px; 
-  margin-bottom : 70px; 
+  margin-bottom : 30px; 
 `;
 
 function Exhibition() {
@@ -68,6 +69,8 @@ function Exhibition() {
             </ButtonContainer>
             <TextBox>{"PROJECT"}</TextBox>
             <Slider year={activeYear} />
+            <TextBox>{"PHOTO"}</TextBox>
+            <Footer></Footer>
       </div>
       </>
   );
