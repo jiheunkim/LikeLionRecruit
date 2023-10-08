@@ -1,0 +1,105 @@
+.main {
+  font-family: "PretendardVariable";
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 88px;
+  margin-bottom: 200px;
+}
+
+.main-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 42.96px;
+  text-align: center;
+  margin-bottom: 89px;
+}
+
+.white-box {
+  width: 880px;
+  height: 140px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.48px;
+  padding-top: 10px;
+}
+.white-box2 {
+  width: 880px;
+  height: 420px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.48px;
+  padding-top: 10px;
+}
+
+
+.white-box label,
+.white-box2 label {
+  display: block;
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-bottom: 30px;
+}
+
+input[type="text"]::placeholder {
+  font-family: "PretendardVariable";
+  color: #8E8E8E;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.71px;
+}
+
+/* 입력 필드 스타일 */
+input[type="text"] {
+  font-family: "PretendardVariable";
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  width: 817.36px;
+  border: none;
+  border-bottom: 1px dotted #000;
+  outline: none;
+  margin: 0 auto;
+  display: block;
+  text-align: left;
+}
+
+.white-box2 textarea {
+  font-family: "PretendardVariable";
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  width: 817.36px;
+  height: 270px;
+  margin: 0 auto;
+  display: block;
+  resize: none; /* 크기 조절 금지 */
+  border: 1px dotted #000;
+  border-radius: 10px;
+}
+
+.submit-title {
+  margin-top: 80px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 42.96px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #EDEBEB;
+}
