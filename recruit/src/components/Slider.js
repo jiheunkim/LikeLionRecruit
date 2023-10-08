@@ -19,14 +19,14 @@ const Button = styled.button`
 `;
 
 const LeftButton = styled(Button)`
-  background-image: url('image/buttonL.png');
+  background-image: url('image/buttonL2.png');
   border: 0;
   margin-right: 350px;
   background-color: transparent;
 `;
 
 const RightButton = styled(Button)`
-  background-image: url('image/buttonR.png');
+  background-image: url('image/buttonR2.png');
   border: 0;
   margin-left: 350px;
   background-color: transparent;
