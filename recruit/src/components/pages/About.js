@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import '../../App.css';
 import './About.css';
 
-// img
-import group19 from './Group19.png';
-import group34 from './Group34.png';
-import group35 from './Group35.png';
-
 function About() {
 
     // Instagram 페이지 URL
@@ -23,20 +18,20 @@ function About() {
         {/* linktree */}
         <div className='link-box'>
           <div className='imgBox'>
-            <img src={group19} className='group19'/>
+            <img src="image/link-Box.png" className="Group19" alt="imgbox"/>
             <div className='overlay-title'>
               <p>about us</p>
             </div>
 
             <div className='insta-img' onClick={goToInstagramPage}>
-              <img src={group34} className='group34'/>
+              <img src='image/insta-img.png' className='group34'/>
             </div>
             <div className='insta-text'>
               <p>@likelion_konkuk.univ</p>
             </div>
           
             <div className='linktree-img'>
-              <img src={group35} className='group35'/>
+              <img src='image/linktree-img.png' className='group35'/>
             </div> 
             <div className='linktree-text'>
               <p>https://linktr.ee/likelion.ku</p>
@@ -94,6 +89,10 @@ function About() {
             경영학과 23 노선재<br />
             </div>
         </div>
+      <div className='source'>
+        <p>아이콘 출처<br />
+        Flaticon.com</p>
+      </div>
       </div>
   );
 }

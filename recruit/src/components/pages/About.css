@@ -4,19 +4,24 @@
     justify-content: center; 
     flex-direction: column;
     align-items: center;
-    height: 100%; 
-
-    padding-top: 84px;
+    min-height: 100vh;
+    margin: 0; /* 바깥 여백을 없애기 위해 설정 */
+    padding: 0; /* 안쪽 여백도 없애기 위해 설정 */
+    overflow: hidden; /* 내용이 화면을 벗어나지 않도록 설정 */
 }
+
+
 
 .link-box{
     position: relative;
 }
 
-.link-box .group19{
+.link-box .Group19{
     width: 752px;
     height: 626px;
     flex-shrink: 0;
+
+    margin-top: 84px;
 }
 
 .overlay-title {
@@ -28,13 +33,14 @@
     line-height: normal;
 
     position: absolute; 
-    top: 80px; 
+    top: 164px; 
     left: 315px;
+    font-family: "DNFBitBit";
   }
 
 .insta-img{
     position: absolute; 
-    top: 189px; 
+    top: 273px; 
     left: 325px;
     cursor: pointer;
 
@@ -53,10 +59,21 @@
     line-height: normal;
     letter-spacing: 0.9px;
 
-    top: 279px; 
+    top: 364px; 
     left:261px;
 }
 
+.linktree-img{
+    position: absolute; 
+    width: 1%;
+    top: 505px;
+    left: 332px;
+    cursor: pointer;
+
+    width: 88px;
+    height: 107px;
+    flex-shrink: 0;
+}
 
 .linktree-text{
     position: absolute; 
@@ -67,22 +84,8 @@
     font-weight: 400;
     line-height: normal;
 
-    top: 520px;
+    top: 604px;
     left: 252px;
-}
-
-
-
-.linktree-img{
-    position: absolute; 
-    width: 1%;
-    top: 421px; 
-    left: 332px;
-    cursor: pointer;
-
-    width: 88px;
-    height: 107px;
-    flex-shrink: 0;
 }
 
 .credit{
@@ -139,3 +142,15 @@
     line-height: normal;
 }
    
+
+.source{
+    color: #8D8D8D;
+    text-align: center;
+    font-family: Pretendard Variable;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    margin-top: 130px;
+}
