@@ -36,7 +36,7 @@ const TextBox = styled.div`
 
 function Exhibition() {
   const [activeButton, setActiveButton] = useState('11기');
-  const [activeYear, setActiveYear] = useState('11기');
+  const [activeYear, setActiveYear] = useState('year11th');
 
   const handleButtonClick = (buttonName, year) => {
     setActiveButton(buttonName);

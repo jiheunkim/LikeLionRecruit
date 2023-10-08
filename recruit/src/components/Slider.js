@@ -51,33 +51,11 @@ export default class Slider extends Component {
     offsetRadius: 2,
     showNavigation: false,
     enableSwipe: true,
-    config: config.stiff
+    config: config.stiff,
+    displayYear: '',
+    slides: []
   };
 
-  slides = [
-    {
-      key: uuidv4(),
-      content: <Image src="https://picsum.photos/800/801/?random" alt="1" />
-    },
-    {
-      key: uuidv4(),
-      content: <Image src="https://picsum.photos/800/802/?random" alt="2" />
-    },
-    {
-      key: uuidv4(),
-      content: <Image src="https://picsum.photos/600/803/?random" alt="3" />
-    },
-    {
-      key: uuidv4(),
-      content: <Image src="https://picsum.photos/800/500/?random" alt="4" />
-    },
-    {
-      key: uuidv4(),
-      content: <Image src="https://picsum.photos/800/804/?random" alt="5" />
-    }
-  ].map((slide, index) => {
-    return { ...slide, onClick: () => this.setState({ goToSlide: index }) };
-  });
 
   onChangeInput = (e) => {
     this.setState({
@@ -126,17 +104,82 @@ export default class Slider extends Component {
       }
     }
   };
-    handlePrevSlide = () => {
+  handlePrevSlide = () => {
     let { goToSlide } = this.state;
-    goToSlide = (goToSlide - 1 + this.slides.length) % this.slides.length; 
+    goToSlide = (goToSlide - 1 + this.state.slides.length) % this.state.slides.length; 
     this.setState({ goToSlide });
-    };
-    
-    handleNextSlide= () => {
+  };
+  
+  handleNextSlide= () => {
     let { goToSlide } = this.state; 
-    goToSlide= (goToSlide+1)%this.slides.length; 
+    goToSlide= (goToSlide+1)%this.state.slides.length; 
     this.setState({goToSlide});
-    };
+  };
+
+
+  setDisplayYearFromProps = (year) => {
+    let displayYear;
+
+    switch(year) {
+      case 'year11th':
+        displayYear = '11기';
+        break;
+      case 'year12th':
+        displayYear = '12기';
+        break;
+      case 'year13th':
+        displayYear = '13기';
+        break;
+      default:
+        displayYear = '';
+    }
+
+    this.setState({displayYear});
+  }
+  
+    async componentDidMount() {
+      const year = this.props.year || 'year11th';
+      await this.setDisplayYearFromProps(year);
+      await this.setSlidesFromData(year);
+   }
+ 
+   async componentDidUpdate(prevProps) {
+     if(prevProps.year !== this.props.year) {
+       const year = this.props.year || 'year11th';
+       await this.setDisplayYearFromProps(year);
+       await this.setSlidesFromData(year);
+     }
+   }
+
+     setSlidesFromData = async (year) => {
+      let jsonUrl;
+
+      switch(year) {
+        case 'year11th':
+          jsonUrl = '/dummy/year11th.json';
+          break;
+        case 'year12th':
+          jsonUrl = '/dummy/year12th.json';
+          break;
+        case 'year13th':
+          jsonUrl = '/dummy/year13th.json';
+          break;
+        default:
+          return;
+      }
+
+      const response = await fetch(jsonUrl);
+      const data = await response.json();
+
+      const slides = data.map((item, index) => ({
+        key: uuidv4(),
+        content:<Image src={item.photo[0]} alt={item.p_name} />,
+        onClick : ()=> this.setState({goToSlide:index})
+      }));
+
+      this.setState({slides});
+  }
+
   render() {
     return (
         <div
@@ -150,13 +193,14 @@ export default class Slider extends Component {
           onTouchMove={this.handleTouchMove}
         >
         <Carousel 
-          slides={this.slides}
+          slides={this.state.slides}
           goToSlide={this.state.goToSlide}
         />
         <ButtonContainer>
           <LeftButton onClick ={this.handlePrevSlide} />
           <RightButton onClick ={this.handleNextSlide} />
         </ButtonContainer>
+        <h2>{`${this.state.displayYear} 데이터를 받아왔습니다.`}</h2>
       </div>
     );
   }
