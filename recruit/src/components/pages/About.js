@@ -36,9 +36,13 @@ function About() {
             <div className='linktree-text'>
               <p>https://linktr.ee/likelion.ku</p>
             </div>
-
-          </div>
+          </div> 
         </div>
+
+        <div className='clickicon'>
+          <img src="image/clickicon.png" className="clickicon" alt="click"/>
+        </div>
+
 
         {/* credit */}
         <div className='credit'>
@@ -60,9 +64,9 @@ function About() {
            {/* 프론트*/}
            <div className='sub-title'>
             [프론트엔드]</div>
-            {/* <div className={"blank1"}></div> */}
             <div className='name'>
-            국제무역학과 19 김지흔<br />
+            <br className="br-gap1"/>
+            국제무역학과 19 김지흔<br/>
             스마트ICT융합공학과 20 김지현<br />
             경영학과 21 신준용<br />
             국제무역학과 21 김진서<br /></div>
@@ -73,8 +77,8 @@ function About() {
             <div className='sub-heading'>
               JAVA</div>
             <div className='name'>
-            융합생명공학과 17 정제원<br />
-            컴퓨터공학과 17 최병찬<br />
+            융합생명공학과 17 정제원<br/>
+            컴퓨터공학과 17 최병찬<br/>
             컴퓨터공학과 18 곽민재<br />
             컴퓨터공학과 20 강찬욱<br />
             컴퓨터공학과 21 정연채<br />
