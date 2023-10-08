@@ -36,6 +36,12 @@ const TextBox = styled.div`
 
 function Exhibition() {
   const [activeButton, setActiveButton] = useState('11기');
+  const [activeYear, setActiveYear] = useState('11기');
+
+  const handleButtonClick = (buttonName, year) => {
+    setActiveButton(buttonName);
+    setActiveYear(year);
+  }
 
   return (
       <>
@@ -43,25 +49,25 @@ function Exhibition() {
             <ButtonContainer>
               <Button 
                   style={{color: activeButton === '11기' ? '#000000' : '#B9B9B9'}} 
-                  onClick={() => setActiveButton('11기')}
+                  onClick={() => handleButtonClick('11기', 'year11th')}
               >
                   {"11기"}
               </Button>
               <Button 
                   style={{color: activeButton === '12기' ? '#000000' : '#B9B9B9'}} 
-                  onClick={() => setActiveButton('12기')}
+                  onClick={() => handleButtonClick('12기', 'year12th')}
               >
                   {"12기"}
               </Button>
               <Button 
                   style={{color: activeButton === '13기' ? '#000000' : '#B9B9B9'}} 
-                  onClick={() => setActiveButton('13기')}
+                  onClick={() => handleButtonClick('13기', 'year13th')}
               >
                   {"13기"}
               </Button>
-              </ButtonContainer>
-              <TextBox>{"PROJECT"}</TextBox>
-              <Slider></Slider>
+            </ButtonContainer>
+            <TextBox>{"PROJECT"}</TextBox>
+            <Slider year={activeYear} />
       </div>
       </>
   );
