@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from '../Footer';
 import './Apply.css';
 
 
@@ -134,6 +135,7 @@ function Apply() {
           </form>
         </div>
       </div>
+      <Footer />
       </>
   );
 }
