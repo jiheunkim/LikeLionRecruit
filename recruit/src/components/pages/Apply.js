@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import '../../App.css';
+import './Apply.css';
 
 
 
-function Apply() {
+function Apply(props) {
 
   return (
       <>
-      Apply
+      <div className="App-back">
+        <div className="main-title">
+          <p>건국대학교 멋쟁이사자처럼 12기 지원서</p>
+        </div>
+      </div>
       </>
   );
 }
