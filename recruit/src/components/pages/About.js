@@ -38,10 +38,9 @@ function About() {
               <p>https://linktr.ee/likelion.ku</p>
             </div>
           </div> 
-        </div>
-
-        <div className='clickicon'>
-          <img src="image/clickicon.png" className="clickicon" alt="click"/>
+          <div className='clickicon'>
+            <img src="image/clickicon.png" className="clickicon" alt="click"/>
+          </div>
         </div>
 
 
@@ -110,11 +109,11 @@ function About() {
             <div className="br-gap1" style={{ marginBottom: '3px' }} /> 
             경영학과 23 노선재<br />
             </div>
-        </div>
-        <div className='source'>
-          <p>아이콘 출처<br />
-          Flaticon.com</p>
-        </div>
+          <div className='source'>
+            <p>아이콘 출처<br />
+            Flaticon.com</p>
+          </div>
+        </div> 
         <Footer />
       </div>
   );
