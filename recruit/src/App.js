@@ -7,6 +7,7 @@ import Exhibition from './components/pages/Exhibition';
 import About from './components/pages/About';
 import './App.css';
 import ExhibitionPhoto from './components/ExhibitionPhoto';
+import SliderDetail from './components/SliderDetail';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Route path="/about" element={<About />} />
 
         <Route path="/exhibitionPhoto" element={<ExhibitionPhoto />} />
-
+        <Route path="/projectdetail/:year/:index" element={<SliderDetail />} />
+        
       </Routes>
     </BrowserRouter>
   );

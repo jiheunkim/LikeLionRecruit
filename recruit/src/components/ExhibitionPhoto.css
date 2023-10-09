@@ -9,17 +9,6 @@
     overflow: hidden; /* 내용이 화면을 벗어나지 않도록 설정 */ 
 }
 
-.photo-text{
-    color: #000;
-    font-family: "DNFBitBit";
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    margin-top: 97px;
-}
-
 .photo-img{
     margin-top: 30px;
     margin-bottom: 150px;

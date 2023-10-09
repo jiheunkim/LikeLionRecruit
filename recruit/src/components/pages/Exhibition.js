@@ -3,6 +3,7 @@ import '../../App.css';
 import styled from 'styled-components';
 import Slider from '../Slider';
 import Footer from '../Footer';
+import ExhibitionPhoto from '../ExhibitionPhoto';
 
 const Button = styled.button`
   width: 100px;
@@ -70,6 +71,7 @@ function Exhibition() {
             <TextBox>{"PROJECT"}</TextBox>
             <Slider year={activeYear} />
             <TextBox>{"PHOTO"}</TextBox>
+            <ExhibitionPhoto></ExhibitionPhoto>
             <Footer></Footer>
       </div>
       </>
