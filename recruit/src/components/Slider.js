@@ -17,17 +17,17 @@ const Button = styled.button`
   width: 50px;
   height: 50px;
   background-size: cover;
-  background-color: none;
+  background-color: transparent;
 `;
 
 const LeftButton = styled(Button)`
-  background-image: url('image/buttonL5.png');
+  background-image: url('/image/buttonL5.png');
   border: 0;
   background-color: transparent;
 `;
 
 const RightButton = styled(Button)`
-  background-image: url('image/buttonR5.png');
+  background-image: url('/image/buttonR5.png');
   border: 0;
   background-color: transparent;
   position: absolute;

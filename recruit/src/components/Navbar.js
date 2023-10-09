@@ -35,7 +35,7 @@ function Navbar() {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className={`navbar-logo ${activeLink === 'home' ? 'active' : ''}`} onClick={() => handleLinkClick('home')}>
-            <img className="fab fa-typo3" alt="logo" src="image/likelion_logo.png" />
+            <img className="fab fa-typo3" alt="logo" src="/image/likelion_logo.png" />
             LIKELION<br></br>KONKUK
           </Link>
           <div className='menu-icon' onClick={handleClick}>

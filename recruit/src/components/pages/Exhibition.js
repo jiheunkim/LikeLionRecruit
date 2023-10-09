@@ -15,6 +15,9 @@ const Button = styled.button`
   letter-spacing: 0em;
   border: 0;
   background-color: #EDEBEB;
+  &:hover {
+    cursor:pointer;
+}
 `;
 
 const ButtonContainer = styled.div`
