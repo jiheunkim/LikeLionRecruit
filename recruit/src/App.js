@@ -6,6 +6,7 @@ import Apply from './components/pages/Apply';
 import Exhibition from './components/pages/Exhibition';
 import About from './components/pages/About';
 import './App.css';
+import ExhibitionPhoto from './components/ExhibitionPhoto';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Route path="/apply" element={<Apply />} />
         <Route path="/exhibition" element={<Exhibition />} />
         <Route path="/about" element={<About />} />
+
+        <Route path="/exhibitionPhoto" element={<ExhibitionPhoto />} />
+
       </Routes>
     </BrowserRouter>
   );
