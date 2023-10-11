@@ -27,14 +27,14 @@ const Title = styled.h1`
     line-height: 52px;
     letter-spacing: 0.045em;
     text-align:left; 
-    margin-top: 40px;
+    margin-top: 100px;
     margin-bottom: 80px;
 `;
 
 const BackButton = styled.button`
    position:absolute; 
    left: 50%;
-   top: 35px; // 원하는 값으로 조절하세요.
+   top: 100px; // 원하는 값으로 조절하세요.
    transform: translateX(-850%);
    scale: 1.2;
    background-image:url("/image/backarrow.png");
