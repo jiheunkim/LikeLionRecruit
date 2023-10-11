@@ -16,6 +16,8 @@ function Apply() {
     quest3: '',
   });
 
+  const [showPopup, setShowPopup] = useState(false); // 팝업창
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
@@ -23,7 +25,10 @@ function Apply() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowPopup(true);
+  };
 
+  const submitData = () => {
     // HTTP POST 요청 보내기
     fetch('/your-backend-endpoint', {
       method: 'POST',
@@ -36,10 +41,16 @@ function Apply() {
       .then((data) => {
         // 서버로부터의 응답을 처리하거나 다음 단계로 넘어갈 수 있음
         console.log(data);
+        setShowPopup(false); // 팝업을 닫음
       })
       .catch((error) => {
         console.error('Error:', error);
+        setShowPopup(false); // 팝업을 닫음
       });
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -134,6 +145,19 @@ function Apply() {
             <button type="submit" className='submit-title'>[지원하기]</button>
           </form>
         </div>
+        {showPopup && (
+          <>
+          <div className="modal-background">
+              {/* 모달 백그라운드 */}
+            </div>
+          <div className="popup">
+            <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closePopup}/>
+            <div className='popup-t'>!</div>
+            <p className='popup-text'>제출 후 수정이 불가능합니다.<br></br>제출하시겠습니까?</p>
+            <button className='popup-submit' onClick={submitData}>[제출하기]</button>
+          </div>
+          </>
+        )}
       </div>
       <Footer />
       </>
