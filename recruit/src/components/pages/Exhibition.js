@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../../App.css';
 import styled from 'styled-components';
 import Slider from '../Slider';
+import Footer from '../Footer';
+import ExhibitionPhoto from '../ExhibitionPhoto';
 
 const Button = styled.button`
   width: 100px;
@@ -13,6 +15,9 @@ const Button = styled.button`
   letter-spacing: 0em;
   border: 0;
   background-color: #EDEBEB;
+  &:hover {
+    cursor:pointer;
+}
 `;
 
 const ButtonContainer = styled.div`
@@ -31,7 +36,7 @@ const TextBox = styled.div`
   letter-spacing: 0em;
   text-align: center;
   margin-top: 55px; 
-  margin-bottom : 70px; 
+  margin-bottom : 30px; 
 `;
 
 function Exhibition() {
@@ -68,6 +73,9 @@ function Exhibition() {
             </ButtonContainer>
             <TextBox>{"PROJECT"}</TextBox>
             <Slider year={activeYear} />
+            <TextBox>{"PHOTO"}</TextBox>
+            <ExhibitionPhoto></ExhibitionPhoto>
+            <Footer></Footer>
       </div>
       </>
   );

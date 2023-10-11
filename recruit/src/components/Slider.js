@@ -3,33 +3,35 @@ import Carousel from "react-spring-3d-carousel";
 import {v4 as uuidv4} from "uuid";
 import { config } from "react-spring";
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ButtonContainer = styled.div`
   position: absolute;
   top: calc(50% - 35px);
   left: calc(50% - 400px);
-  z-index: 2; 
+  z-index: 2;
+  top: 550px;
 `;
 
 const Button = styled.button`
   width: 50px;
   height: 50px;
   background-size: cover;
-  background-color: none;
+  background-color: transparent;
 `;
 
 const LeftButton = styled(Button)`
-  background-image: url('image/buttonL5.png');
+  background-image: url('/image/buttonL5.png');
   border: 0;
-  margin-right: 350px;
   background-color: transparent;
 `;
 
 const RightButton = styled(Button)`
-  background-image: url('image/buttonR5.png');
+  background-image: url('/image/buttonR5.png');
   border: 0;
-  margin-left: 350px;
   background-color: transparent;
+  position: absolute;
+  left: 750px;
 `;
 
 const Image = styled.img`
@@ -53,7 +55,6 @@ export default class Slider extends Component {
     config: config.stiff,
     slides: []
   };
-
 
   onChangeInput = (e) => {
     this.setState({
@@ -149,8 +150,11 @@ export default class Slider extends Component {
 
       const slides = data.map((item, index) => ({
         key: uuidv4(),
-        content:<Image src={item.photo[0]} alt={item.p_name} />,
-        onClick : ()=> this.setState({goToSlide:index})
+        content: (
+          <Link to={`/projectdetail/${this.props.year}/${index}`}>
+            <Image src={item.photo[0]} alt={item.p_name} />
+          </Link>
+        )
       }));
 
       this.setState({slides});
@@ -158,12 +162,14 @@ export default class Slider extends Component {
 
   render() {
     return (
+      <>
         <div
-          style={{ width: "80%", 
+          style={{ 
+                  position: "relative", // 추가
+                  width: "80%", 
                   height: "500px", 
                   margin: "0 auto", 
-                  textAlign: "center", 
-                  position: "relative"}}
+                  textAlign: "center" }}
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouchMove}
         >
@@ -171,11 +177,12 @@ export default class Slider extends Component {
           slides={this.state.slides}
           goToSlide={this.state.goToSlide}
         />
+        </div>
         <ButtonContainer>
           <LeftButton onClick ={this.handlePrevSlide} />
           <RightButton onClick ={this.handleNextSlide} />
         </ButtonContainer>
-      </div>
+      </>
     );
   }
 }
