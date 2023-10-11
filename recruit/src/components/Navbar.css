@@ -124,6 +124,10 @@
       color: #242424;
       border-radius: 0;
     }
+
+    .nav-links.active {
+      border-bottom: none; /* 화면 축소시 border-bottom 안보이게 */
+    }
   
     .navbar-logo {
       position: absolute;
