@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const [activeLink, setActiveLink] = useState('');
+  const location = useLocation();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -18,11 +18,8 @@ function Navbar() {
     }
   };
 
-  // 링크 클릭 시 activeLink 업데이트
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-    closeMobileMenu();
-};
+  // activeLink 상태를 현재 경로에 따라 업데이트
+  const activeLink = location.pathname;
 
   useEffect(() => {
     showButton();
@@ -34,7 +31,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className={`navbar-logo ${activeLink === 'home' ? 'active' : ''}`} onClick={() => handleLinkClick('home')}>
+        <Link to='/' className={`navbar-logo ${activeLink === '/' ? 'active' : ''}`}>
             <img className="fab fa-typo3" alt="logo" src="/image/likelion_logo.png" />
             LIKELION<br></br>KONKUK
           </Link>
@@ -43,39 +40,24 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-            <Link to='/home'
-              className={`nav-links ${activeLink === 'home' || activeLink === '' ? 'active' : ''}`}
-              onClick={() => handleLinkClick('home')}
-            >
+            <Link to='/' className={`nav-links ${activeLink === '/' ? 'active' : ''}`}>
               HOME
             </Link>
             </li>
             <li className='nav-item'>
-              <Link
-                to='/apply'
-                className={`nav-links ${activeLink === 'apply' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('apply')}
-              >
-                APPLY
-              </Link>
+            <Link to='/apply' className={`nav-links ${activeLink === '/apply' ? 'active' : ''}`}>
+              APPLY
+            </Link>
             </li>
             <li className='nav-item'>
-              <Link
-                to='/exhibition'
-                className={`nav-links ${activeLink === 'exhibition' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('exhibition')}
-              >
-                EXHIBITION
-              </Link>
+            <Link to='/exhibition' className={`nav-links ${activeLink === '/exhibition' ? 'active' : ''}`}>
+              EXHIBITION
+            </Link>
             </li>
             <li className='nav-item'>
-              <Link
-                to='/about'
-                className={`nav-links ${activeLink === 'about' ? 'active' : ''}`}
-                onClick={() => handleLinkClick('about')}
-              >
-                ABOUT
-              </Link>
+            <Link to='/about' className={`nav-links ${activeLink === '/about' ? 'active' : ''}`}>
+              ABOUT
+            </Link>
             </li>
           </ul>
         </div>
