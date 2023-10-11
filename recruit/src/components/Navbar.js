@@ -43,12 +43,12 @@ function Navbar() {
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='/home'
-              className={`nav-links ${activeLink === 'home' ? 'active' : ''}`}
+            <Link to='/home'
+              className={`nav-links ${activeLink === 'home' || activeLink === '' ? 'active' : ''}`}
               onClick={() => handleLinkClick('home')}
-              >
-                HOME
-              </Link>
+            >
+              HOME
+            </Link>
             </li>
             <li className='nav-item'>
               <Link
