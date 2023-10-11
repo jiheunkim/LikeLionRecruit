@@ -27,7 +27,7 @@ const Title = styled.h1`
     line-height: 52px;
     letter-spacing: 0.045em;
     text-align:left; 
-    margin-top: 100px;
+    margin-top: 100px; //오잉
     margin-bottom: 80px;
 `;
 
