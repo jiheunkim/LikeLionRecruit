@@ -74,7 +74,7 @@ function Exhibition() {
             <TextBox>{"PROJECT"}</TextBox>
             <Slider year={activeYear} />
             <TextBox>{"PHOTO"}</TextBox>
-            <ExhibitionPhoto></ExhibitionPhoto>
+            <ExhibitionPhoto activeButton={activeButton} />
             <Footer></Footer>
       </div>
       </>
