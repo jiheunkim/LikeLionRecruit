@@ -1,3 +1,9 @@
+/* tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 .borderline {
     /* display: flex;
     justify-content: center; */
@@ -6,12 +12,24 @@
     align-self: center;
 }
 
+.home_images {
+    position: relative;
+}
+
+.homeimgBox_1,
+.homeimgBox_2 {
+    position: relative;
+}
+
 .homeimgBox_1 {
     width: 679px;
     height: 580px;
 
-    /* margin-top: 72px;
-    margin-left: 86px; */
+    top: 0;
+    left: 0;
+
+    margin-top: 72px;
+    margin-left: 86px;
 
     position: relative;
     vertical-align: middle;
@@ -25,6 +43,8 @@
 }
 
 .home-overlay-title_1 {
+
+
 
 
     position: absolute;
@@ -63,4 +83,15 @@
 
 }
 
+.homeimgBox_2 {
+
+
+
+    top: -100px;
+    /* 원하는 위치로 조절 */
+    left: 500px;
+    /* 원하는 위치로 조절 */
+
+
+}
 
