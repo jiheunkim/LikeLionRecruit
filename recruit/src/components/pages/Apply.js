@@ -9,7 +9,7 @@ function Apply() {
     name: '',
     phone: '',
     email: '',
-    id: '',
+    user_id: '',
     grade: '',
     quest1: '',
     quest2: '',
@@ -90,12 +90,12 @@ function Apply() {
               />
             </div>
             <div className="white-box">
-              <label htmlFor="id">학번</label>
+              <label htmlFor="user_id">학번</label>
               <input
                 type="text"
-                id="id"
+                id="user_id"
                 placeholder="학번을 입력하세요"
-                value={formData.id}
+                value={formData.user_id}
                 onChange={handleChange}
               />
             </div>
