@@ -105,7 +105,7 @@ function Home() {
         <div className='projectimgBox' >
           {/* 상단 */}
           <div class=" w-[1017px] h-[113px] bg-violet-950 rounded-[43px]">
-            <div className='my-2 ml-10 text-white text-2xl font-[Galmuri9] font-normal first-letter: tracking-wide placeholder:littletitle'>
+            <div className='ml-10 text-white text-2xl font-[Galmuri9] font-normal first-letter: tracking-wide placeholder:littletitle'>
               건국대학교 멋쟁이사자처럼</div>
           </div>
 
@@ -240,82 +240,7 @@ function Home() {
           </div>
         </div>
 
-
-        {/*whiteboxzone */}
-        <div className='whiteboxzone'>
-          <div className='musicplay-box'>
-            <img src="image/musicplay.png" className="musicplay"
-              alt="musiclay" style={{ width: "657px", height: "345px" }} />
-          </div>
-          <div className='titleflow'>
-            {/*흐르는 기능 추가*/}
-            <span className='textflow'>♥12기 아기사자 신규 모집♥</span>
-          </div>
-        </div>
-
-
-        {/* recruit */}
-        <div className='recruit' >
-          {/* 모집대상 */}
-          <div div className='title1' style={{ marginBottom: '37px' }} >
-            모집 대상</div>
-          <div className='content1'>
-            <div className="br-gap1" style={{ marginBottom: '4px' }}>
-              24년도 기준 건국대학교 재학생, 휴학생</div>
-            <div className='sub-br' style={{ marginBottom: '35px' }}>
-              *졸업생은 불가, 졸업예정생은 가능</div>
-            <div className='br-gap1' style={{ marginBottom: '63px' }}>
-              창업, 개발에 대한 열정이 있는 대학생</div>
-            <div className="br-gap1">
-              개발 / 디자인 / 기획에 도전하고 싶은 건국대 재학생 및 휴학생</div>
-          </div>
-        </div>
-
-
-        {/*select-schedule*/}
-        <div className='select-schedule'>
-          {/* 선발일정 */}
-          <div className='title2' style={{ marginBottom: '37px' }}>
-            선발 일정</div>
-          <div className='content2'>
-            <div className="br-gap2" style={{ marginBottom: '63px' }}>
-              서류 지원 : 24.00.00(월) ~ 24.00.00(월) 00:00</div>
-            <div className="br-gap2" style={{ marginBottom: '63px' }}>
-              1차 합격 발표: 24.00.00(월)</div>
-            <div className='br-gap2' style={{ marginBottom: '63px' }}>
-              2차 면접: 24.00.00(화) - 24.00.00(목)</div>
-            <div className="br-gap2">
-              최종 발표: 24.00.00(금)</div>
-          </div>
-        </div>
-
-
-        {/*activity-schedule*/}
-        <div className='activity-schedule'>
-          {/* 활동일정 */}
-          <div className='title3' style={{ marginBottom: '37px' }}>
-            활동 일정</div>
-          <div className='content3'>
-            <div className="br-gap3" style={{ marginBottom: '63px' }}>
-              활동 기간: 24.00월 - 24.00월</div>
-            <div className="br-gap3" style={{ marginBottom: '63px' }}>
-              학교 OT : 24.00.00(월) 00시</div>
-            <div className='br-gap3' style={{ marginBottom: '63px' }}>
-              전체 OT : 24.00.00(수) 00시</div>
-            <div className="br-gap3" style={{ marginBottom: '63px' }}>
-              중앙 아이디어톤 : 24년 6월 중</div>
-            <div className="br-gap3" style={{ marginBottom: '200px' }}>
-              중앙 해커톤 : 24년 7월 - 24년 8월</div>
-          </div>
-        </div>
-
-
         <Footer></Footer>
-
-
-
-
-
 
       </div >
 
