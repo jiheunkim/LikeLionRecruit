@@ -1,0 +1,235 @@
+.borderline {
+    /* display: flex;
+    justify-content: center; */
+    align-items: center;
+    width: 1440px;
+    align-self: center;
+}
+
+.homeimgBox_1 {
+    width: 679px;
+    height: 580px;
+
+    /* margin-top: 72px;
+    margin-left: 86px; */
+
+    position: relative;
+    vertical-align: middle;
+}
+
+.home_group19 {
+    width: 679px;
+    height: 580px;
+
+    flex-shrink: 0;
+}
+
+.home-overlay-title_1 {
+
+
+    position: absolute;
+    top: 160px;
+    left: 100px;
+
+    color: #000;
+    font-family: "DNFBitBit";
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 92.336%;
+
+    text-align: center;
+    line-height: 1.2;
+
+
+
+}
+
+.box_text_1 {
+
+    font-family: "DNFBitBit";
+}
+
+.iconheart {
+    position: absolute;
+    top: 150px;
+    left: 500px;
+}
+
+.iconstartup {
+    position: absolute;
+    left: 12px;
+    bottom: 14px;
+
+
+}
+
+
+/* playlist(J) */
+.home-page{
+        background: #EDEBEB;
+        display: flex;
+        justify-content: center; 
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0; /* 바깥 여백을 없애기 위해 설정 */
+        padding: 0; /* 안쪽 여백도 없애기 위해 설정 */
+        overflow: hidden; /* 내용이 화면을 벗어나지 않도록 설정 */
+
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;  
+    }
+
+.home-page .footer-bg{
+    width: 2000px;
+}
+
+
+/* whiteboxzone */
+.whiteboxzone{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;  
+    position: relative;
+}
+
+.titleflow{
+    position: relative;
+    width: 350px;
+    height: 69px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+
+    margin-top: -265px;
+    margin-left: 50px;
+}
+
+
+.textflow{
+    position: absolute;
+
+    color: #000;
+    font-family: Galmuri9;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.8px;
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    animation:  textflow 13s linear infinite;
+    transform: translateY(-50%);
+  }
+
+  @keyframes textflow {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* recruit */
+.recruit{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;  
+    margin-top: 200px;
+  }
+
+.title1{
+    color: #000;
+    font-family:  "PretendardVariable";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 125px;
+}
+
+.br-gap1{
+    color: #000;
+    font-family: "PretendardVariable";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sub-br{
+    color: #000;
+    font-family: "PretendardVariable";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+/* select-schedule */
+.select-schedule{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;  
+  }
+
+.title2{
+    color: #000;
+    font-family:  "PretendardVariable";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 125px;
+}
+
+.br-gap2{
+    color: #000;
+    font-family: "PretendardVariable";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* activity-schedule */
+.activity-schedule{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;  
+}
+
+.title3{
+    color: #000;
+    font-family:  "PretendardVariable";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 125px;
+}
+
+.br-gap3{
+    color: #000;
+    font-family: "PretendardVariable";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
