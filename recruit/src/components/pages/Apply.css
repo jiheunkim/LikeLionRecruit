@@ -149,6 +149,30 @@ input[type="text"] {
   line-height: 47.73px;
 }
 
+.popup-t2 {
+  text-align: center;
+  font-family: "PretendardVariable";
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 62.05px;
+}
+
+.popup-sub {
+  text-align: center;
+  font-family: "PretendardVariable";
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 42.96px;
+}
+
+.popup-text2 {
+  text-align: center;
+  font-family: "PretendardVariable";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.64px;
+}
+
 .popup-submit {
   text-align: center;
   font-family: "PretendardVariable";
