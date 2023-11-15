@@ -17,6 +17,7 @@ function Apply() {
   });
 
   const [showPopup, setShowPopup] = useState(false); // 팝업창
+  const [successPopup, setSuccessPopup] = useState(false); // 지원 완료시
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -41,7 +42,14 @@ function Apply() {
       .then((data) => {
         // 서버로부터의 응답을 처리하거나 다음 단계로 넘어갈 수 있음
         console.log(data);
-        setShowPopup(false); // 팝업을 닫음
+
+        if (data.success) {
+          setShowPopup(false);
+          setSuccessPopup(true); // 지원 완료를 나타내는 팝업 띄우기
+        } else {
+          console.error('Error:', data.error);
+          setShowPopup(false);
+        }
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -51,6 +59,7 @@ function Apply() {
 
   const closePopup = () => {
     setShowPopup(false);
+    setSuccessPopup(false);
   };
 
   return (
@@ -156,6 +165,22 @@ function Apply() {
             <p className='popup-text'>제출 후 수정이 불가능합니다.<br></br>제출하시겠습니까?</p>
             <button className='popup-submit' onClick={submitData}>[제출하기]</button>
           </div>
+          </>
+        )}
+        {successPopup && (
+          <>
+            <div className="modal-background"></div>
+            <div className="popup">
+              <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closePopup} />
+              <div className='popup-t2'>지원 완료!!</div>
+              <p className='popup-sub'>선발 일정</p>
+              <div className='popup-text2'>
+                <p>서류 지원: 24.00.00(월) ~ 24.00.00(월) 00:00</p>
+                <p>1차 합격 발표: 24.00.00(월)</p>
+                <p>2차 면접: 24.00.00(화) ~ 24.00.00(목)</p>
+                <p>최종 발표: 24.00.00(금)</p>
+              </div>
+            </div>
           </>
         )}
       </div>
