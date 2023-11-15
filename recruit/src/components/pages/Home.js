@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../App.css';
 import Footer from '../Footer';
 import './Home.css';
@@ -6,9 +6,31 @@ import likelion_letter_logo from '../pages/LIKELION_letter_logo.png';
 
 function Home() {
 
+  //커서 깜빡이기
+  const [typingText, setTypingText] = useState('');
+  const textArray = ['다양한 트랙별로 기획부터 개발까지!', /* 다른 텍스트 추가 */];
+  const typingSpeed = 100;  // 타이핑 속도 (밀리초)
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let currentText = textArray[currentIndex];
+
+    const typingInterval = setInterval(() => {
+      setTypingText((prevText) => {
+        if (prevText === currentText) {
+          currentIndex = (currentIndex + 1) % textArray.length;
+          currentText = textArray[currentIndex];
+          return '';  // 현재 텍스트가 모두 타이핑되면 비움
+        } else {
+          return currentText.substring(0, prevText.length + 1);
+        }
+      });
+    }, typingSpeed);
+
+    return () => clearInterval(typingInterval);  // 컴포넌트가 언마운트될 때 타이머 정리
+  }, [textArray]);
 
   //기타 변수 선언이나 그런 것들 하면 될 것 같고 
-
 
   return (
 
@@ -110,8 +132,8 @@ function Home() {
           </div>
 
           {/* 하단 */}
-          <div className="w-[1017px] rounded-b-lg bg-black">
-            <div className="flex items-center justify-center text-white mx-auto my-6 littlesubtitle
+          <div className="w-[1017px] rounded-b-lg bg-black relative">
+            <div className="flex items-center justify-center text-white mx-auto littlesubtitle
          text-4xl font-normal font-[Galmuri9] tracking-widest">
               내 손으로 배포까지!</div>
             <div className="ml-10 my-6
@@ -125,7 +147,7 @@ function Home() {
             sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
 
               {/* 프로젝트1 */}
-              <div class="w-[267.57px] h-[337px] border-2 border-white">
+              <div class="projectgrid">
                 <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
 
                   <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
@@ -138,7 +160,7 @@ function Home() {
               </div>
 
               {/* 프로젝트2 */}
-              <div class="w-[267.57px] h-[337px] border-2 border-white">
+              <div class="projectgrid">
                 <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
 
                   <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
@@ -152,7 +174,7 @@ function Home() {
 
 
               {/* 프로젝트3*/}
-              <div class="w-[267.57px] h-[337px] border-2 border-white">
+              <div class="projectgrid">
                 <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
 
                   <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
@@ -165,14 +187,22 @@ function Home() {
               </div>
 
             </div>
-            <span>
-              <div class="ml-10 mt-10 text-yellow-300 text-[28px] font-normal font-[Galmuri9] tracking-wider">
-                &gt;&gt; 프로젝트를 자세히 보시겠습니까?</div>
-              <img src="image/type1.png" className='yellowcursor' />
-            </span>
-            <div class=" text-white text-4xl font-normal font-[Galmuri9] tracking-widest 
+
+            <div className="ml-10 mt-10 text-yellow-300 text-[28px] font-normal font-[Galmuri9] tracking-wider flex items-center">
+              &gt;&gt; 프로젝트를 자세히 보시겠습니까?
+              <img src="image/type1.png" className='yellowcursor' alt='cursor' style={{ marginLeft: '2px' }} />
+            </div>
+
+            {/*<div class="viewdetail">
+              [자세히 보러가기]</div> */}
+
+            <div className="detailLink">
+              [자세히 보러가기]
+            </div>
+
+            {/* <div class=" text-white text-4xl font-normal font-[Galmuri9] tracking-widest 
             float-right mr-10">
-              [자세히 보러가기]</div>
+              [자세히 보러가기]</div> */}
 
           </div>
         </div>
@@ -192,48 +222,110 @@ function Home() {
             <img src="image/free-icon-search.png" className='p-5 searchicon' />
             <div className='flex items-center justify-center
             text-black text-4xl font-normal font-[Galmuri9] tracking-widest 
-            mx-5'>다양한 트랙별로 기획부터 개발까지!</div>
+            mx-5'>{typingText}</div>
           </div>
 
           {/*yellowZone*/}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-1 lg:grid-cols-3
           place-items-center mt-36">
-            {/* 노란색 섹션 - 1 */}
-            <div className='flex flex-col'>
 
-              <div class="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-              <div class="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
+            {/* 노란색 섹션 - 1 */}
+            {/* <div className='flex flex-col'> */}
+            <div className='yz'>
+
+              <div className="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
+              <div className="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
               flex items-center justify-center">
-                <div class="w-[194.49px] h-[32.91px] text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                <div className="w-[194.49px] h-[32.91px] text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
                   기획/디자인</div>
+
+              </div>
+
+              <div className="overlay-div">
+                <div className="part">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    기획/디자인?</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
+
+                <div className="curriculum">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    커리큘럼</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
+
+
 
               </div>
 
             </div>
 
             {/* 노란색 섹션 - 2*/}
-            <div className='flex flex-col'>
+            <div className='yz'>
 
-              <div class="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-              <div class="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
+              <div className="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
+              <div className="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
               flex items-center justify-center">
-                <div class=" text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                <div className=" text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
                   프론트엔드</div>
 
+              </div>
+
+              <div className="overlay-div">
+                <div className="part">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    프론트엔드?</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
+
+                <div className="curriculum">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    커리큘럼</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
               </div>
 
             </div>
 
             {/* 노란색 섹션 - 3*/}
-            <div className='flex flex-col'>
+            <div className='yz'>
 
-              <div class=" w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-              <div class="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
+              <div className=" w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
+              <div className="w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
               flex items-center justify-center">
-                <div class="text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                <div className="text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
                   백엔드</div>
 
               </div>
+
+              <div class="overlay-div">
+
+                <div className="part">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    백엔드?</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
+
+                <div className="curriculum">
+                  <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    커리큘럼</div> <br />
+                  <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
+                    어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                  </div><br />
+                </div>
+
+              </div>
+
 
             </div>
 
