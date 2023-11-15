@@ -131,9 +131,11 @@ export default class Slider extends Component {
    //HTTP GET 요청보내기
   async setSlidesFromData(year) {
     try {
-      const apiPath = `http://34.64.82.240:8000/11/`; // 링크 {$year} 추후 수정
+      const apiPath = `http://34.64.82.240:8080/11/`; // 링크 {$year} 추후 수정
       const response = await fetch(apiPath);
       const data = await response.json();
+
+      console.log(data)
 
       const slides = data.map((item, index) => ({
         key: uuidv4(),
@@ -146,7 +148,7 @@ export default class Slider extends Component {
 
       this.setState({slides});
   } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 

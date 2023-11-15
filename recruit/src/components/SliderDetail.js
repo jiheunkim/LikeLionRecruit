@@ -111,13 +111,13 @@ function SliderDetail() {
             // HTTP GET 요청보내기
             switch(year) {
                 case 'year11th':
-                    apiPath = `http://34.64.82.240:8000/11/${index}`;
+                    apiPath = `http://34.64.82.240:8080/11/${index}`;
                     break;
                 case 'year12th':
-                    apiPath = `http://34.64.82.240:8000/12/${index}`;
+                    apiPath = `http://34.64.82.240:8080/12/${index}`;
                     break;
                 case 'year13th':
-                    apiPath = `http://34.64.82.240:8000/13/${index}`;
+                    apiPath = `http://34.64.82.240:8080/13/${index}`;
                     break;
                 default:
                     return;
