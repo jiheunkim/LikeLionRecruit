@@ -116,36 +116,23 @@ export default class Slider extends Component {
   };
 
   
-    async componentDidMount() {
-      const year = this.props.year || 'year11th';
-      await this.setSlidesFromData(year);
+  async componentDidMount() {
+    const year = this.props.year || 'year11th';
+    await this.setSlidesFromData(year);
+ }
+
+ async componentDidUpdate(prevProps) {
+   if(prevProps.year !== this.props.year) {
+     const year = this.props.year || 'year11th';
+     await this.setSlidesFromData(year);
    }
+ }
  
-   async componentDidUpdate(prevProps) {
-     if(prevProps.year !== this.props.year) {
-       const year = this.props.year || 'year11th';
-       await this.setSlidesFromData(year);
-     }
-   }
-
-     setSlidesFromData = async (year) => {
-      let jsonUrl;
-
-      switch(year) {
-        case 'year11th':
-          jsonUrl = '/dummy/year11th.json';
-          break;
-        case 'year12th':
-          jsonUrl = '/dummy/year12th.json';
-          break;
-        case 'year13th':
-          jsonUrl = '/dummy/year13th.json';
-          break;
-        default:
-          return;
-      }
-
-      const response = await fetch(jsonUrl);
+   //HTTP GET 요청보내기
+  async setSlidesFromData(year) {
+    try {
+      const apiPath = `http://DNS서버:8000/${year}`;
+      const response = await fetch(apiPath);
       const data = await response.json();
 
       const slides = data.map((item, index) => ({
@@ -158,8 +145,12 @@ export default class Slider extends Component {
       }));
 
       this.setState({slides});
+  } catch (error) {
+      console.error(error);
+    }
   }
 
+  
   render() {
     return (
       <>
