@@ -106,30 +106,35 @@ function SliderDetail() {
 
     useEffect(() => {
         const fetchSlideData = async () => {
-            let jsonUrl;
-
+            let apiPath;
+            
+            // HTTP GET 요청보내기
             switch(year) {
                 case 'year11th':
-                    jsonUrl = '/dummy/year11th.json';
+                    apiPath = `http://DNS서버:8000/11/${index}`;
                     break;
                 case 'year12th':
-                    jsonUrl = '/dummy/year12th.json';
+                    apiPath = `http://DNS서버:8000/12/${index}`;
                     break;
                 case 'year13th':
-                    jsonUrl = '/dummy/year13th.json';
+                    apiPath = `http://DNS서버:8000/13/${index}`;
                     break;
                 default:
                     return;
             }
 
-            const response = await fetch(jsonUrl);
-            const data = await response.json();
-
-            setSlideData(data[index]);
-        }
+            try {
+                const response = await fetch(apiPath);
+                const data = await response.json();
+                setSlideData(data);
+              } catch (error) {
+                console.error(error);
+              }
+            };
 
         fetchSlideData();
     }, [year, index]);
+
 
   return (
       <>
