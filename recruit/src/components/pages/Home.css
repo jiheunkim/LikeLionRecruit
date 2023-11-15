@@ -11,7 +11,6 @@
     left: 0;
 
     margin-top: 72px;
-    margin-left: 86px;
 
     position: relative;
     vertical-align: middle;
@@ -99,7 +98,7 @@
     letter-spacing: 0.2em;
 
 
-    margin-bottom: 4px;
+    margin-bottom: 52px;
     margin-right: 30px;
     /* tracking-widest: 1;*/
 }
@@ -119,29 +118,186 @@
     position: relative;
 }
 
-.overlay-div {
+
+
+.overlay-div-1 {
+    position: absolute;
     display: none;
+
     width: 802px;
     height: 386px;
 
     flex-shrink: 0;
 
-    background-color: white;
 
-    position: absolute;
     top: 100%;
     /* 위치 조절 가능, 상단으로부터 얼마나 떨어져 나타날지 조절 */
-    left: 0;
+    left: calc(140%);
+
+    transform: translateX(-50%);
+    /* left 값을 음수 마진으로 조절하여 정확한 가운데 정렬을 수행 */
     z-index: 1;
     /* 다른 요소들 위에 표시되도록 설정 */
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);*/
     /* 그림자 효과 */
     transition: opacity 0.3s ease;
     /* 페이드 효과를 부드럽게 만들기 위한 transition 속성 추가 */
+
 }
 
-.yz:hover .overlay-div {
+.yz:hover .overlay-div-1 {
     display: block;
     opacity: 1;
     /* 호버할 때 투명도를 1로 변경하여 나타나게 함 */
 }
+
+.overlay-div-2 {
+    position: absolute;
+    display: none;
+
+    width: 802px;
+    height: 386px;
+
+    flex-shrink: 0;
+
+
+    top: 100%;
+    /* 위치 조절 가능, 상단으로부터 얼마나 떨어져 나타날지 조절 */
+    left: 50%;
+    /* 가운데 정렬을 위해 left 값을 50%로 설정 */
+    transform: translateX(-50%);
+    /* left 값을 음수 마진으로 조절하여 정확한 가운데 정렬을 수행 */
+    z-index: 1;
+    /* 다른 요소들 위에 표시되도록 설정 */
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);*/
+    /* 그림자 효과 */
+    transition: opacity 0.3s ease;
+    /* 페이드 효과를 부드럽게 만들기 위한 transition 속성 추가 */
+
+}
+
+.yz:hover .overlay-div-2 {
+    display: block;
+    opacity: 1;
+    /* 호버할 때 투명도를 1로 변경하여 나타나게 함 */
+}
+
+.overlay-div-3 {
+    position: absolute;
+    display: none;
+
+    width: 802px;
+    height: 386px;
+
+    flex-shrink: 0;
+
+
+    top: 100%;
+    /* 위치 조절 가능, 상단으로부터 얼마나 떨어져 나타날지 조절 */
+    right: calc(-107%);
+    /* 가운데 정렬을 위해 left 값을 50%로 설정 */
+    transform: translateX(-50%);
+    /* left 값을 음수 마진으로 조절하여 정확한 가운데 정렬을 수행 */
+    z-index: 1;
+    /* 다른 요소들 위에 표시되도록 설정 */
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);*/
+    /* 그림자 효과 */
+    transition: opacity 0.3s ease;
+    /* 페이드 효과를 부드럽게 만들기 위한 transition 속성 추가 */
+
+}
+
+.yz:hover .overlay-div-3 {
+    display: block;
+    opacity: 1;
+    /* 호버할 때 투명도를 1로 변경하여 나타나게 함 */
+}
+
+.yz_container_1:hover,
+.yz_conteriner_2:hover,
+.yz_container_3:hover {
+    cursor: pointer;
+}
+
+
+.part,
+.curriculum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.svg1 {
+    position: relative
+        /* 그대로 둘 것 */
+}
+
+.content-container-1 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 802px;
+    height: 386px;
+    flex-shrink: 0;
+    background-color: white;
+
+    text-align: center;
+
+    top: 286px;
+    left: 67px;
+
+}
+
+.svg2 {
+    position: relative
+        /* 그대로 둘 것 */
+}
+
+.content-container-2 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 802px;
+    height: 386px;
+    flex-shrink: 0;
+    background-color: white;
+
+    text-align: center;
+
+}
+
+
+.svg3 {
+    position: relative
+        /* 그대로 둘 것 */
+}
+
+.content-container-3 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 802px;
+    height: 386px;
+    flex-shrink: 0;
+    background-color: white;
+
+    text-align: center;
+
+    top: 265px;
+    left: 0px;
+
+}
+
+
+
