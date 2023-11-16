@@ -13,16 +13,17 @@ function About() {
     }
 
      //HTTP GET 요청보내기
-    const testGetJava = () => {
+    const testGetJava = async () => {
       try {
         const apiPath = `http://3.37.130.241:8080/api/images/backend/1`;
-        const response = fetch(apiPath);
+        const response = await fetch(apiPath); // await를 사용하여 비동기적으로 데이터를 받음
+        const data = await response.json(); // JSON 데이터로 변환
 
-        console.log(response.data.photo)
-    } catch (error) {
-        console.log(error);
+        console.log(data.photo); // 이미지 URL 출력
+      } catch (error) {
+        console.error(error);
       }
-    }
+    };
 
 
   return (
