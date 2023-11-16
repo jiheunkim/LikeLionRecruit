@@ -31,7 +31,7 @@ function Apply() {
 
   const submitData = () => {
     // HTTP POST 요청 보내기
-    fetch('/your-backend-endpoint', {
+    fetch('http://3.37.130.241:8080/api/upload/user-info/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
