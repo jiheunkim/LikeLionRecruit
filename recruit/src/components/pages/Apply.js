@@ -43,13 +43,8 @@ function Apply() {
         // 서버로부터의 응답을 처리하거나 다음 단계로 넘어갈 수 있음
         console.log(data);
 
-        if (data.success) {
-          setShowPopup(false);
-          setSuccessPopup(true); // 지원 완료를 나타내는 팝업 띄우기
-        } else {
-          console.error('Error:', data.error);
-          setShowPopup(false);
-        }
+        setShowPopup(false);
+        setSuccessPopup(true); // 지원 완료를 나타내는 팝업 띄우기
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -99,12 +94,12 @@ function Apply() {
               />
             </div>
             <div className="white-box">
-              <label htmlFor="user_id">학번</label>
+              <label htmlFor="userId">학번</label>
               <input
                 type="text"
-                id="user_id"
+                id="userId"
                 placeholder="학번을 입력하세요"
-                value={formData.user_id}
+                value={formData.userId}
                 onChange={handleChange}
               />
             </div>
