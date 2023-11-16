@@ -18,7 +18,7 @@ function About() {
         const apiPath = `http://3.37.130.241:8080/api/images/backend/1`;
         const response = fetch(apiPath);
 
-        console.log(response.data)
+        console.log(response.data.photo)
     } catch (error) {
         console.log(error);
       }
