@@ -61,16 +61,16 @@ const ProducerLabel = styled.div`
 `;
 
 const ArrowImage = styled.img`
-	width :33px ; // 너비 설정
-	height :33px ; // 높이 설정
+   width :33px ; // 너비 설정
+   height :33px ; // 높이 설정
     margin-top: 7px;
-	&:first-child {
-	   margin-right :35px ;
-	}
+   &:first-child {
+      margin-right :35px ;
+   }
 
-	&:last-child {
-	   margin-left :33px ;
-	}
+   &:last-child {
+      margin-left :33px ;
+   }
 `;
 
 const PersonInfo = styled.p`
@@ -100,41 +100,61 @@ const BackToListButton = styled.button`
     }
 `;
 
+/* base url: http://34.64.82.240:8080
+endpoint: /year/index
+method: get
+응답형태:
+    {
+   "p_name": "195", 
+   "photos": [
+   "ibb.co/k8rMqR7", "ibb.co/JKvxDjt", "ibb.co/cg1kN0D", "ibb.co/rtCWh5P", "ibb.co/Zc47PjC", "ibb.co/q1cTtHC", "ibb.co/jbzRKXL", "https%3A/ibb.co/55v0bf0"], 
+   "madeby": [
+      {
+         "name": "김민주", "m_id": 19, "major": "스마트ICT융합공학과"
+      }, 
+      {
+         "name": "박해솔", "m_id": 19, "major": "산업공학과"
+      }, 
+      {
+         "name": "최병찬", "m_id": 18, "major": "컴퓨터공학과"
+      }, 
+      {
+         "name": "안진모", "m_id": 23, "major": "스마트ICT융합공학과"
+      }, 
+      {
+         "name": "정제원", "m_id": 17, "major": "융합생명공학과"
+      }, 
+      {
+         "name": "강찬욱", "m_id": 22, "major": "컴퓨터공학과"
+   }]
+} */
+
+
+
 function SliderDetail() {
-    const { year, index } = useParams();
+    const { year: yearParam,  team_name } = useParams();
+    const year = yearParam.match(/\d+/)[0];
     const [slideData, setSlideData] = useState(null);
-
+    
     useEffect(() => {
-        const fetchSlideData = async () => {
-            let apiPath;
-            
-            // HTTP GET 요청보내기
-            switch(year) {
-                case 'year11th':
-                    apiPath = `http://34.64.82.240:8080/11/${index}`;
-                    break;
-                case 'year12th':
-                    apiPath = `http://34.64.82.240:8080/12/${index}`;
-                    break;
-                case 'year13th':
-                    apiPath = `http://34.64.82.240:8080/13/${index}`;
-                    break;
-                default:
-                    return;
+
+        // http get 요청하기
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`http://34.64.82.240:8080/${year}/농토리/`);
+            if (!response.ok) {
+              throw new Error(`서버 응답 실패, HTTP 상태코드: ${response.status}`);
             }
+            const data = await response.json();
 
-            try {
-                const response = await fetch(apiPath);
-                const data = await response.json();
-                setSlideData(data);
-              } catch (error) {
-                console.error(error);
-              }
-            };
-
-        fetchSlideData();
-    }, [year, index]);
-
+            setSlideData(data);
+          } catch (error) {
+              console.error('에러:', error.message);
+          }
+        };
+        fetchData();
+      
+      }, [year, team_name]);
 
   return (
       <>
@@ -145,8 +165,8 @@ function SliderDetail() {
              <>
                 <BackButton onClick={() => window.history.back()} />
                 <Title>{slideData.p_name}</Title>
-                {slideData.photo.map((photoUrl, i) => (
-                  <StyledImage key={i} src={photoUrl} alt={`${slideData.p_name}_${i}`} />
+                {slideData.photos.map((photo, i) => (
+                  <StyledImage key={i} src={photo} alt={`${slideData.photos}_${i}`} />
                ))}
              </>
            )}
@@ -156,7 +176,7 @@ function SliderDetail() {
                <ArrowImage src="/image/pd_leftarrow.png" alt="left arrow" />
             </ProducerLabel>
             {slideData && slideData.madeby.map((person, index) => (
-                <PersonInfo key={index}>{person.major}학과 {person.id}학번 {person.name}</PersonInfo>
+                <PersonInfo key={index}>{person.major} {person.m_id}학번 {person.name}</PersonInfo>
             ))}
             <BackToListButton onClick={() => window.history.back()}>[목록으로]</BackToListButton> 
         </ContentContainer>
