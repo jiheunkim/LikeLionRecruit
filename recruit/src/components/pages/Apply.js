@@ -9,7 +9,7 @@ function Apply() {
     name: '',
     phone: '',
     email: '',
-    user_id: '',
+    userId: '',
     grade: '',
     quest1: '',
     quest2: '',
