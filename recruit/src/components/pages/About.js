@@ -12,6 +12,19 @@ function About() {
       window.open(instagramUrl, '_blank'); // 새 창에서 Instagram 페이지 열기
     }
 
+     //HTTP GET 요청보내기
+    const testGetJava = () => {
+      try {
+        const apiPath = `http://3.37.130.241:8080/api/images/backend/1`;
+        const response = fetch(apiPath);
+        const data = response.json();
+
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+      }
+    }
+
 
   return (
       <div className='about-page'>
@@ -20,7 +33,7 @@ function About() {
         <div className='link-box'>
           <div className='imgBox'>
             <img src="image/link-Box.png" className="Group19" alt="imgbox"/>
-            <div className='overlay-title'>
+            <div className='overlay-title' onClick={testGetJava}>
               <p>about us</p>
             </div>
 
