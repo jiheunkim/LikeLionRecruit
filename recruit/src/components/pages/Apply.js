@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Footer';
 import './Apply.css';
@@ -23,9 +23,11 @@ function Apply() {
   const [quest2Length, setQuest2Length] = useState(0);
   const [quest3Length, setQuest3Length] = useState(0);
 
-
   const [showPopup, setShowPopup] = useState(false); // 팝업창
   const [successPopup, setSuccessPopup] = useState(false); // 지원 완료시
+
+  const [periodInfo, setPeriodInfo] = useState(null);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -79,6 +81,32 @@ function Apply() {
       });
   };
 
+  const getPeriodInfo = async () => {
+    try {
+      const apiPath = `http://3.37.130.241:8080/api/recruitment/schedule/`;
+      const response = await fetch(apiPath);
+      const data = await response.json();
+      setPeriodInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    return `${formattedDate}${formattedDayofWeek}`;
+  };
+
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${formattedDate}${formattedDayofWeek} ${formattedTime}`;
+  };
+
   const closePopup = () => {
     setShowPopup(false);
   };
@@ -87,6 +115,23 @@ function Apply() {
     setSuccessPopup(false);
     navigate('/');
   };
+
+  useEffect(() => {
+    if (!periodInfo) {
+      getPeriodInfo();
+      // const dummyData = {
+      //   id: 1,
+      //   applicationStartDate: "2023-11-18T10:00:00",
+      //   applicationEndDate: "2023-12-31T23:59:59",
+      //   applicationResultAnnouncementDate: "2024-01-15T12:00:00",
+      //   interviewStartDate: "2024-02-20T14:00:00",
+      //   interviewEndDate: "2024-02-25T23:59:59",
+      //   finalResultAnnouncementDate: "2024-03-31T15:00:00"
+      // };  
+    
+      // setPeriodInfo(dummyData);
+    }
+  }, [periodInfo]);
 
   return (
       <>
@@ -218,10 +263,10 @@ function Apply() {
               <div className='popup-t2'>지원 완료!!</div>
               <p className='popup-sub'>선발 일정</p>
               <div className='popup-text2'>
-                <p>서류 지원: 24.00.00(월) ~ 24.00.00(월) 00:00</p>
-                <p>1차 합격 발표: 24.00.00(월)</p>
-                <p>2차 면접: 24.00.00(화) ~ 24.00.00(목)</p>
-                <p>최종 발표: 24.00.00(금)</p>
+                <p>서류 지원: {formatDate(periodInfo.applicationStartDate)} ~ {formatDate2(periodInfo.applicationEndDate)}</p>
+                <p>1차 합격 발표: {formatDate(periodInfo.applicationResultAnnouncementDate)}</p>
+                <p>2차 면접: {formatDate(periodInfo.interviewStartDate)} ~ {formatDate(periodInfo.interviewEndDate)}</p>
+                <p>최종 발표: {formatDate(periodInfo.finalResultAnnouncementDate)}</p>
               </div>
             </div>
           </>
