@@ -85,11 +85,22 @@ input[type="text"] {
   font-weight: 400;
   width: 817.36px;
   height: 270px;
+  line-height: 25px;
   margin: 0 auto;
   display: block;
   resize: none; /* 크기 조절 금지 */
   border: 1px dotted #000;
   border-radius: 10px;
+}
+
+.character-count {
+  position: relative;
+  right: 4%;
+  bottom: 8%;
+  color: #888;
+  text-align: end;
+  font-family: "PretendardVariable";
+  font-size: 12px;
 }
 
 .submit-title {

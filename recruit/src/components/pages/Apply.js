@@ -16,13 +16,37 @@ function Apply() {
     quest3: '',
   });
 
+  const [quest1Length, setQuest1Length] = useState(0);
+  const [quest2Length, setQuest2Length] = useState(0);
+  const [quest3Length, setQuest3Length] = useState(0);
+
+
   const [showPopup, setShowPopup] = useState(false); // 팝업창
   const [successPopup, setSuccessPopup] = useState(false); // 지원 완료시
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    
+    if (id === 'quest1' && value.length <= 500) {
+      setQuest1Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest2' && value.length <= 500) {
+      setQuest2Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest3' && value.length <= 500) {
+      setQuest3Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest1') {
+      setQuest1Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else if (id === 'quest2') {
+      setQuest2Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else if (id === 'quest3') {
+      setQuest3Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,6 +95,7 @@ function Apply() {
                 placeholder="이름을 입력하세요"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -81,6 +106,7 @@ function Apply() {
                 placeholder="연락처를 입력하세요 (010-1234-1234)"
                 value={formData.phone}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -91,6 +117,7 @@ function Apply() {
                 placeholder="이메일을 입력하세요"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -101,6 +128,7 @@ function Apply() {
                 placeholder="학번을 입력하세요"
                 value={formData.userId}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -111,6 +139,7 @@ function Apply() {
                 placeholder="학년을 입력하세요"
                 value={formData.grade}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box2">
@@ -122,7 +151,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest1}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest1Length}/500
+              </div>
             </div>
             <div className="white-box2">
               <label htmlFor="quest2">만들고 싶은 서비스?</label>
@@ -133,7 +166,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest2}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest2Length}/500
+              </div>
             </div>
             <div className="white-box2">
               <label htmlFor="quest3">다른 동아리 참여 경험?</label>
@@ -144,7 +181,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest3}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest3Length}/500
+              </div>
             </div>
             <button type="submit" className='submit-title'>[지원하기]</button>
           </form>
