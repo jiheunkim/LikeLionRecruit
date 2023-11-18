@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../Footer';
 import './Apply.css';
 
 
 function Apply() {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -78,7 +81,11 @@ function Apply() {
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  const closeSuccessPopup = () => {
     setSuccessPopup(false);
+    navigate('/');
   };
 
   return (
@@ -207,7 +214,7 @@ function Apply() {
           <>
             <div className="modal-background"></div>
             <div className="popup">
-              <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closePopup} />
+              <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closeSuccessPopup} />
               <div className='popup-t2'>지원 완료!!</div>
               <p className='popup-sub'>선발 일정</p>
               <div className='popup-text2'>
