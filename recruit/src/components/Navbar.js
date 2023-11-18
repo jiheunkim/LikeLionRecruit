@@ -18,6 +18,18 @@ function Navbar() {
     }
   };
 
+  const checkPeriod = async () => {
+    try {
+      const apiPath = `http://3.37.130.241:8080/api/data/check/`;
+      const response = await fetch(apiPath); // await를 사용하여 비동기적으로 데이터를 받음
+      const data = await response.json(); // JSON 데이터로 변환
+
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // activeLink 상태를 현재 경로에 따라 업데이트
   const activeLink = location.pathname;
 
