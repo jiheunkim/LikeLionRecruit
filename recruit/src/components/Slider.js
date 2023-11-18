@@ -40,6 +40,8 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
+
+
 const getTouches = (evt) => {
   return (
     evt.touches || evt.originalEvent.touches // browser API
@@ -116,57 +118,83 @@ export default class Slider extends Component {
   };
 
   
-  async componentDidMount() {
-    const year = this.props.year || 'year11th';
-    await this.setSlidesFromData(year);
- }
-
- async componentDidUpdate(prevProps) {
-   if(prevProps.year !== this.props.year) {
-     const year = this.props.year || 'year11th';
-     await this.setSlidesFromData(year);
+    async componentDidMount() {
+      const year = this.props.year || 'year11th';
+      await this.setSlidesFromData(year);
    }
- }
- 
-   //HTTP GET 요청보내기
-  async setSlidesFromData(year) {
+
+   async componentDidUpdate(prevProps) {
+     if(prevProps.year !== this.props.year) {
+       const year = this.props.year || 'year11th';
+       await this.setSlidesFromData(year);
+     }
+   }
+
+
+
+   setSlidesFromData = async (year) => {
     try {
-      const apiPath = `http://34.64.82.240:8080/11/`; // 링크 {$year} 추후 수정
-      const response = await fetch(apiPath);
-      const data = await response.json();
+        const numericYear = this.extractNumericYear(year);
+        const jsonUrl = `http://34.64.82.240:8080/${numericYear}`;
+        const response = await fetch(jsonUrl);
 
-      console.log(data)
+        if (!response.ok) {
+          throw new Error(`서버 응답 실패, HTTP 상태코드: ${response.status}`);
+        }
 
-      const slides = data.map((item, index) => ({
-        key: uuidv4(),
-        content: (
-          <Link to={`/projectdetail/${this.props.year}/${index}`}>
-            <Image src={item.photo[0]} alt={item.p_name} />
-          </Link>
-        )
-      }));
+          const data = await response.json();
 
-      this.setState({slides});
-  } catch (error) {
-      console.log(error);
-    }
+          if (!Array.isArray(data)) {
+            throw new Error('서버 응답 배열이 아닙니다.');
+          }
+
+          const slides = data.map((item, team_name) => ({
+            key: uuidv4(),
+            content: (
+              <Link
+            to={{
+              pathname: `/projectdetail/${numericYear}/${item.team_name}`,
+              state: { team_name: item.team_name }
+      }}
+    >
+      <Image
+        src={`https://${item.photos[0]}`}
+        alt={item.team_name}
+      />
+    </Link>
+
+            )
+          }));
+
+          this.setState({slides});
+      }   catch (error) {
+        console.error('에러:', error.message);
+      }
+    };
+
+  extractNumericYear = (year) => {
+    const numericYear = year.match(/\d+/);
+    return numericYear ? numericYear[0] : '11';
   }
 
   
+    
+
   render() {
+
     return (
       <>
         <div
-          style={{ 
+          style={{
                   position: "relative", // 추가
-                  width: "80%", 
-                  height: "500px", 
-                  margin: "0 auto", 
+                  width: "80%",
+                  height: "500px",
+                  margin: "0 auto",
                   textAlign: "center" }}
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouchMove}
         >
-        <Carousel 
+        <Carousel
           slides={this.state.slides}
           goToSlide={this.state.goToSlide}
         />

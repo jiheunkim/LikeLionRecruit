@@ -19,7 +19,7 @@ function App() {
         <Route path="/exhibition" element={<Exhibition />} />
         <Route path="/about" element={<About />} />
         <Route path="/exhibitionPhoto" element={<ExhibitionPhoto />} />
-        <Route path="/projectdetail/:year/:index" element={<SliderDetail />} />
+        <Route path="/projectdetail/:year/:item" element={<SliderDetail />} />
 
       </Routes>
     </BrowserRouter>
