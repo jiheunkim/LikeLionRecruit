@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../Footer';
 import './Apply.css';
 
 
 function Apply() {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,13 +19,39 @@ function Apply() {
     quest3: '',
   });
 
+  const [quest1Length, setQuest1Length] = useState(0);
+  const [quest2Length, setQuest2Length] = useState(0);
+  const [quest3Length, setQuest3Length] = useState(0);
+
   const [showPopup, setShowPopup] = useState(false); // 팝업창
   const [successPopup, setSuccessPopup] = useState(false); // 지원 완료시
 
+  const [periodInfo, setPeriodInfo] = useState(null);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    
+    if (id === 'quest1' && value.length <= 500) {
+      setQuest1Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest2' && value.length <= 500) {
+      setQuest2Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest3' && value.length <= 500) {
+      setQuest3Length(value.length);
+      setFormData({ ...formData, [id]: value });
+    } else if (id === 'quest1') {
+      setQuest1Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else if (id === 'quest2') {
+      setQuest2Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else if (id === 'quest3') {
+      setQuest3Length(500); // 500자를 초과하는 경우 더 이상 입력하지 않도록 설정
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,10 +81,57 @@ function Apply() {
       });
   };
 
+  const getPeriodInfo = async () => {
+    try {
+      const apiPath = `http://3.37.130.241:8080/api/recruitment/schedule/`;
+      const response = await fetch(apiPath);
+      const data = await response.json();
+      setPeriodInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    return `${formattedDate}${formattedDayofWeek}`;
+  };
+
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${formattedDate}${formattedDayofWeek} ${formattedTime}`;
+  };
+
   const closePopup = () => {
     setShowPopup(false);
-    setSuccessPopup(false);
   };
+
+  const closeSuccessPopup = () => {
+    setSuccessPopup(false);
+    navigate('/');
+  };
+
+  useEffect(() => {
+    if (!periodInfo) {
+      getPeriodInfo();
+      // const dummyData = {
+      //   id: 1,
+      //   applicationStartDate: "2023-11-18T10:00:00",
+      //   applicationEndDate: "2023-12-31T23:59:59",
+      //   applicationResultAnnouncementDate: "2024-01-15T12:00:00",
+      //   interviewStartDate: "2024-02-20T14:00:00",
+      //   interviewEndDate: "2024-02-25T23:59:59",
+      //   finalResultAnnouncementDate: "2024-03-31T15:00:00"
+      // };  
+    
+      // setPeriodInfo(dummyData);
+    }
+  }, [periodInfo]);
 
   return (
       <>
@@ -71,6 +147,7 @@ function Apply() {
                 placeholder="이름을 입력하세요"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -81,6 +158,7 @@ function Apply() {
                 placeholder="연락처를 입력하세요 (010-1234-1234)"
                 value={formData.phone}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -91,6 +169,7 @@ function Apply() {
                 placeholder="이메일을 입력하세요"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -101,6 +180,7 @@ function Apply() {
                 placeholder="학번을 입력하세요"
                 value={formData.userId}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box">
@@ -111,6 +191,7 @@ function Apply() {
                 placeholder="학년을 입력하세요"
                 value={formData.grade}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="white-box2">
@@ -122,7 +203,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest1}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest1Length}/500
+              </div>
             </div>
             <div className="white-box2">
               <label htmlFor="quest2">만들고 싶은 서비스?</label>
@@ -133,7 +218,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest2}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest2Length}/500
+              </div>
             </div>
             <div className="white-box2">
               <label htmlFor="quest3">다른 동아리 참여 경험?</label>
@@ -144,7 +233,11 @@ function Apply() {
                 rows="10"
                 value={formData.quest3}
                 onChange={handleChange}
+                required
               ></textarea>
+              <div className="character-count">
+                {quest3Length}/500
+              </div>
             </div>
             <button type="submit" className='submit-title'>[지원하기]</button>
           </form>
@@ -166,14 +259,14 @@ function Apply() {
           <>
             <div className="modal-background"></div>
             <div className="popup">
-              <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closePopup} />
+              <img className="popup-close" alt="closeBtn" src="/image/buttonClose.png" onClick={closeSuccessPopup} />
               <div className='popup-t2'>지원 완료!!</div>
               <p className='popup-sub'>선발 일정</p>
               <div className='popup-text2'>
-                <p>서류 지원: 24.00.00(월) ~ 24.00.00(월) 00:00</p>
-                <p>1차 합격 발표: 24.00.00(월)</p>
-                <p>2차 면접: 24.00.00(화) ~ 24.00.00(목)</p>
-                <p>최종 발표: 24.00.00(금)</p>
+                <p>서류 지원: {formatDate(periodInfo.applicationStartDate)} ~ {formatDate2(periodInfo.applicationEndDate)}</p>
+                <p>1차 합격 발표: {formatDate(periodInfo.applicationResultAnnouncementDate)}</p>
+                <p>2차 면접: {formatDate(periodInfo.interviewStartDate)} ~ {formatDate(periodInfo.interviewEndDate)}</p>
+                <p>최종 발표: {formatDate(periodInfo.finalResultAnnouncementDate)}</p>
               </div>
             </div>
           </>
