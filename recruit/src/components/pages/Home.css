@@ -1,7 +1,11 @@
-/* tailwind.css */
-/* @import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';  */
+.home-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDEBEB;
+}
 
 .homeimgBox_1 {
     width: 679px;
@@ -64,6 +68,344 @@
 
 }
 
+.homeimgBox_2 {
+    position: relative;
+    width: 650px;
+    top: -180px;
+    left: 400px;
+}
+
+.containicon {
+    display: flex;
+    position: relative;
+    top: 0.75rem;
+    /* 12px */
+}
+
+.containicon_right {
+    flex: 1 1 0%;
+}
+
+.homeimgBox_2_white {
+    z-index: 0;
+    width: 650px;
+    height: 558px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* 그림자 효과를 적용합니다. */
+    position: relative;
+}
+
+.homeimgBox_2_white_top {
+    z-index: 20;
+    width: 650px;
+    height: 46px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 그림자 효과를 적용합니다. */
+    display: flex;
+    align-items: center;
+}
+
+.homeimgBox_2_white_top_circles {
+    margin-inline-start: 1.25rem
+        /* 20px */
+    ;
+    width: 57px;
+    height: 16.07px;
+    position: relative;
+}
+
+.circles_1 {
+    width: 15px;
+    height: 15px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: #ff0000;
+    /* 또는 "red"를 사용할 수 있습니다. */
+    border-radius: 9999px;
+    /* 혹은 다른 값을 사용할 수 있습니다. */
+
+}
+
+.circles_2 {
+    width: 15px;
+    height: 16.07px;
+    left: 21px;
+    top: 0;
+    position: absolute;
+    background-color: #ffea00;
+    /* 또는 다른 노란색 코드를 사용할 수 있습니다. */
+    border-radius: 9999px;
+    /* 혹은 다른 값을 사용할 수 있습니다. */
+
+}
+
+.circles_3 {
+    width: 15px;
+    height: 15px;
+    left: 42px;
+    top: 0;
+    position: absolute;
+    background-color: #84cc16;
+    /* Lime-500에 해당하는 적절한 색상 코드로 대체하세요. */
+    border-radius: 9999px;
+    /* 혹은 다른 값을 사용할 수 있습니다. */
+}
+
+.homeimgBox_2_white_down {
+    display: flex;
+    position: relative;
+
+}
+
+.graySidebar {
+    display: flex;
+    width: 139px;
+    height: 512px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(244 244 245 / var(--tw-bg-opacity));
+}
+
+
+.subcontent_title_1 {
+    margin-bottom: 0.75rem
+        /* 12px */
+    ;
+    color: #000;
+    /* 텍스트 색상은 적절한 색상 코드로 대체하세요. */
+    font-size: 13px;
+    font-weight: normal;
+    font-family: 'Galmuri9', sans-serif;
+    /* 폰트 이름은 실제 폰트 이름으로 대체하세요. */
+    line-height: .75rem
+        /* 12px */
+    ;
+    margin-left: 0.5rem
+        /* 8px */
+    ;
+    /* 필요에 따라 추가적인 스타일을 여기에 추가하세요 */
+}
+
+.subcontent_likelion_title {
+    color: #000;
+    /* 텍스트 색상은 적절한 색상 코드로 대체하세요. */
+    font-size: 11px;
+    font-weight: normal;
+    font-family: Galmuri9;
+    /* 폰트 이름은 실제 폰트 이름으로 대체하세요. */
+    line-height: 10.16px;
+    margin-bottom: 0.5rem
+        /* 8px */
+    ;
+    margin-left: 0.5rem
+        /* 8px */
+    ;
+}
+
+
+
+.subcontentList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.subcontentList li a {
+    text-decoration: none;
+    /* Removes underlines from anchor elements within list items */
+}
+
+
+.subcontent_list_group {
+    display: flex;
+    width: 139px;
+    height: 18px;
+    color: #000;
+    /* 텍스트 색상은 적절한 색상 코드로 대체하세요. */
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    /* 폰트 이름은 실제 폰트 이름으로 대체하세요. */
+    line-height: 10.16px;
+    cursor: pointer;
+    /* 원하는 경우 커서 스타일을 변경하세요. */
+
+}
+
+.subcontent_list_group:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(212 212 216 / var(--tw-bg-opacity));
+}
+
+.subcontent_list_style {
+    margin-left: 0.5rem;
+    /* 8px */
+
+}
+
+.home-overlay-subcontent_content {
+    margin-left: 0.5rem;
+    /* 8px */
+
+}
+
+.subcontent_title_2 {
+    margin-bottom: 0.75rem;
+    /* 12px */
+    color: #000;
+    /* 텍스트 색상은 적절한 색상 코드로 대체하세요. */
+    font-size: 13px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    /* 폰트 이름은 실제 폰트 이름으로 대체하세요. */
+    line-height: .75rem
+        /* 12px */
+}
+
+.subcontent_recruit12th {
+    color: #000;
+    /* 텍스트 색상은 적절한 색상 코드로 대체하세요. */
+    font-size: 11px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    /* 폰트 이름은 실제 폰트 이름으로 대체하세요. */
+    line-height: 10.16px;
+    /* 원하는 경우 적절한 값으로 대체하세요. */
+
+}
+
+.home-overlay_pic {
+    flex: 1 1 0%;
+    place-self: center;
+    margin-left: 1.75rem
+        /* 28px */
+    ;
+}
+
+.home-overlay_logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0.75rem
+        /* 12px */
+    ;
+    margin-right: 0.75rem
+        /* 12px */
+    ;
+    width: 300px;
+    height: 23px;
+}
+
+.projectimgBox_top {
+    position: relative;
+    width: 1017px;
+    height: 113px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(46 16 101 / var(--tw-bg-opacity));
+    /* 이 부분에 원하는 색상 코드로 변경하세요 */
+    border-radius: 43px;
+}
+
+.projectimgBox_top_text {
+    position: absolute;
+    margin-left: 2.5rem
+        /* 40px */
+    ;
+    margin-top: 1rem
+        /* 16px */
+    ;
+    color: white;
+    font-size: 1.5rem
+        /* 24px */
+    ;
+    line-height: 2rem
+        /* 32px */
+    ;
+    font-family: Galmuri9;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+
+}
+
+.projectimgBox_down {
+    position: relative;
+    margin-top: -3rem
+        /* -48px */
+    ;
+    width: 1017px;
+    height: 772px;
+    border-bottom-right-radius: 2.6875rem
+        /* 43px */
+    ;
+    border-bottom-left-radius: 2.6875rem
+        /* 43px */
+    ;
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+
+}
+
+.projectimgBox_down_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem
+        /* 28px */
+    ;
+    color: white;
+    font-size: 2.25rem
+        /* 36px */
+    ;
+    line-height: 2.5rem
+        /* 40px */
+    ;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.1em;
+    /* tracking-widest에 대한 대체 값입니다 */
+}
+
+.projectimgBox_down_subtitle {
+    margin-left: 2.5rem
+        /* 40px */
+    ;
+    margin-top: 1.5rem
+        /* 24px */
+    ;
+    margin-bottom: 1.5rem
+        /* 24px */
+    ;
+    color: white;
+    font-size: 28px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.05em;
+}
+
+.projectimgBox_down_projects {
+    margin-left: 2.5rem
+        /* 40px */
+    ;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 1.5rem
+        /* 24px */
+    ;
+    row-gap: 1.5rem
+        /* 24px */
+    ;
+
+}
+
+
+
+
+
+
 
 .projectgrid {
     width: 267.57px;
@@ -73,6 +415,85 @@
 
 .projectgrid:hover {
     cursor: pointer;
+}
+
+.projectgrid_form {
+    width: 267.57px;
+    height: 44.47px;
+    background-color: white;
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.projectgrid_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 1rem
+        /* 16px */
+    ;
+    line-height: 1.5rem
+        /* 24px */
+    ;
+
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.025em;
+}
+
+.projectgrid_contentbox {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem
+        /* 16px */
+    ;
+    padding-right: 1rem
+        /* 16px */
+    ;
+    padding-top: 1rem
+        /* 16px */
+    ;
+    padding-bottom: 1rem
+        /* 16px */
+    ;
+}
+
+.projectgrid_contentbox_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projectgrid_contentbox_content {
+    color: white;
+    text-align: center;
+    padding-top: 1.5rem
+        /* 24px */
+    ;
+    padding-bottom: 1.5rem
+        /* 24px */
+    ;
+}
+
+.projectgrid_detail {
+    display: flex;
+    align-items: center;
+    margin-left: 2.5rem
+        /* 40px */
+    ;
+    margin-top: 2.5rem
+        /* 40px */
+    ;
+    --tw-text-opacity: 1;
+    color: rgb(253 224 71 / var(--tw-text-opacity));
+
+    font-size: 28px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.05em;
+
 }
 
 .yellowcursor {
@@ -108,9 +529,83 @@
     cursor: pointer;
 }
 
+.trackDetailZone {
+    display: flex;
+    flex-direction: column;
+    margin-top: 18rem
+        /* 288px */
+    ;
+}
 
+.squirellicon {
+    float: right;
+    margin-right: 8rem
+        /* 128px */
+    ;
+}
 
+.trackDetailZone_whiteRbox {
+    display: flex;
+    width: 800px;
+    height: 88px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    border-radius: 44px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.searchicon {
+    padding: 1.25rem
+        /* 20px */
+    ;
+}
+
+.trackDetailZone_whiteRbox_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 2.25rem
+        /* 36px */
+    ;
+    line-height: 2.5rem
+        /* 40px */
+    ;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.1em;
+    margin-left: 1.25rem
+        /* 20px */
+    ;
+    margin-right: 1.25rem
+        /* 20px */
+    ;
+}
+
+.trackDetailZone_yz_guideLine {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.75rem
+        /* 12px */
+    ;
+    place-items: center;
+    margin-top: 9rem
+        /* 144px */
+    ;
+}
+
+@media screen and (min-width: 640px) {
+    .trackDetailZone_yz_guideLine {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .trackDetailZone_yz_guideLine {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
 
 .yz {
     display: flex;
@@ -119,6 +614,62 @@
 
 
 }
+
+.yz_container_1:hover,
+.yz_conteriner_2:hover,
+.yz_container_3:hover {
+    cursor: pointer;
+}
+
+.yz_top {
+    width: 83.03px;
+    height: 29.92px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+    border-radius: 12px;
+}
+
+.yz_down {
+    margin-top: -0.75rem
+        /* -12px */
+    ;
+    width: 285px;
+    height: 184.02px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.yz_text {
+    width: 194.49px;
+    height: 32.91px;
+    color: black;
+
+    font-size: 2.25rem
+        /* 36px */
+    ;
+    line-height: 2.5rem
+        /* 40px */
+    ;
+
+    font-weight: 400;
+    font-family: Galmuri9;
+
+    line-height: 33.24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
 .overlay-div-1 {
     position: absolute;
@@ -154,6 +705,35 @@
 
 }
 
+.content_part_title {
+    color: black;
+    /* Corresponds to text-black in Tailwind CSS */
+    font-size: 2.25rem
+        /* 36px */
+    ;
+    line-height: 2.5rem
+        /* 40px */
+    ;
+    font-weight: 400;
+    /* Corresponds to font-normal in Tailwind CSS */
+    font-family: Galmuri9;
+    /* Corresponds to font-['Galmuri9'] in Tailwind CSS */
+    letter-spacing: 0.1em;
+}
+
+.content_part_content {
+    width: 715.98px;
+    color: black;
+    font-size: 1.25rem
+        /* 20px */
+    ;
+    line-height: 1.75rem
+        /* 28px */
+    ;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.025em;
+}
 
 
 
@@ -220,11 +800,6 @@
     /* 호버할 때 투명도를 1로 변경하여 나타나게 함 */
 }
 
-.yz_container_1:hover,
-.yz_conteriner_2:hover,
-.yz_container_3:hover {
-    cursor: pointer;
-}
 
 
 .part,
@@ -456,13 +1031,4 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-
-
-.subcontentList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
 }
