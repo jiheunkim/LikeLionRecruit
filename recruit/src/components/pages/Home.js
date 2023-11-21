@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 
 function Home() {
-
   //커서 깜빡이기
   const [typingText, setTypingText] = useState('');
   const textArray = ['다양한 트랙별로 기획부터 개발까지!', /* 다른 텍스트 추가 */];
