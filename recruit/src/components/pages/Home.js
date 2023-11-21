@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import './Home.css';
 import likelion_letter_logo from '../pages/LIKELION_letter_logo.png';
 import classNames from 'classnames';
-
+import axios from 'axios';
 
 function Home() {
   //커서 깜빡이기
@@ -14,11 +14,11 @@ function Home() {
 
 
   const navigation = [
-    { name: '기획 디자인', href: '#', current: false },
-    { name: '프론트엔드', href: '#', current: false },
-    { name: '백엔드', href: '#', current: false },
-    { name: '아이디어톤', href: '#', current: false },
-    { name: '중앙 해커톤', href: '#', current: true },
+    { name: '기획 디자인', href: '/api/images/pmanddesignimage/1', current: false },
+    { name: '프론트엔드', href: '/api/images/frontend/1', current: false },
+    { name: '백엔드', href: '/api/images/backend/1', current: false },
+    { name: '아이디어톤', href: '/api/images/ideathon/1', current: false },
+    { name: '중앙 해커톤', href: '/api/images/hackathon/1', current: true },
 
   ]
 
@@ -45,7 +45,7 @@ function Home() {
 
   return (
 
-    <div className='relative flex flex-col items-center justify-center home-page bg-[#EDEBEB]'>
+    <div className='home-page'>
 
       <div className='borderline'>
 
@@ -69,49 +69,43 @@ function Home() {
           </div>
         </div>
 
-        {/* 멋쟁이사자처럼 대학 11주년 해커톤.png */}
-
-
-
-        <div className='homeimgBox_2
-           relative w-[650px] top-[-180px] left-[400px]'>
-          <div className='flex relative top-3'>
-            {/* 이미지를 div의 가장 오른쪽으로 이동시킴 */}
-            <div className='flex-1' />
+        <div className='homeimgBox_2'>
+          <div className='containicon'>
+            <div className='containicon_right' />
             <img className='iconalien' src="image/free_icon_alien_space.png" />
           </div>
-          {/* <div class='relative flex flex-row'> */}
+
           {/* 두번째 homeimgBox */}
-          <div className="z-0 w-[650px] h-[558px] bg-white shadow relative" >
+          <div className="homeimgBox_2_white" >
 
 
             {/*두번째 homeimgBox_상단바  */}
-            <div className="z-20 w-[650px] h-[46px] bg-white shadow flex items-center">
-              <div className="ms-5  w-[57px] h-[16.07px] relative">
-                <div className="w-[15px] h-[15px] left-0 top-0 absolute bg-red-400 rounded-full" />
-                <div className="w-[15px] h-[16.07px] left-[21px] top-0 absolute bg-yellow-300 rounded-full" />
-                <div className="w-[15px] h-[15px] left-[42px] top-0 absolute bg-lime-500 rounded-full" />
+            <div className="homeimgBox_2_white_top">
+
+              <div className="homeimgBox_2_white_top_circles">
+                <div className="circles_1" />
+                <div className="circles_2" />
+                <div className="circles_3" />
               </div>
+
             </div>
 
             {/* 두번째 homeimgBox_상단바_아래  */}
-            <div class='relative flex'>
+            <div class='homeimgBox_2_white_down'>
 
               {/* 회색 가로 박스 */}
-              <div className="flex w-[139px] h-[512px]
-               bg-zinc-100">
+              <div className="graySidebar">
 
 
-                <div class='ml-2' style={{ marginTop: '20px' }}>
+                <div class='Sidebar' style={{ marginTop: '20px' }}>
 
                   <div className='home-overlay-subcontent_title' >
 
-                    < div className='subcontent_title_1 mb-3
-                     text-black text-[13px] font-normal font-[Galmuri9] leading-3'>
+                    < div className='subcontent_title_1'>
                       LIKELION </div>
                     {/* 데이터 처리 */}
                     <div div className='subcontent_likelion'>
-                      <div class="text-black text-[11px] font-normal font-[Galmuri9] leading-[10.16px] mb-2" >
+                      <div class="subcontent_likelion_title" >
                         <div style={{ marginTop: '7px' }}>건국대학교</div>
                         <div style={{ marginTop: '7px' }}>멋쟁이사자처럼</div>
                       </div>
@@ -123,15 +117,12 @@ function Home() {
                             <a
                               href={item.href}
                               className={classNames(
-                                'hover:bg-zinc-300 w-[139px] h-[18px] text-black text-[11px] font-normal font-[Galmuri9] leading-[10.16px] mb-2',
-
-                                {
-                                  'w-[139px] h-[18px] bg-zinc-300': item.current,
-                                  // 추가적인 클래스를 필요에 따라 여기에 추가할 수 있습니다.
-                                }
+                                'subcontent_list_group'
                               )}
                             >
-                              {item.name}
+                              <span className="subcontent_list_style">
+                                {item.name}
+                              </span>
                             </a>
                           </li>
                         ))}
@@ -143,23 +134,18 @@ function Home() {
                   </div>
 
                   <div className='home-overlay-subcontent_content'>
-                    <div className='subcontent_title_2
-                      mb-3
-                      text-black text-[13px] font-normal font-[Galmuri9] leading-3 ' style={{ marginTop: '24px' }}>
+                    <div className='subcontent_title_2' style={{ marginTop: '24px' }}>
                       12기 모집</div>
 
-                    <div className='subcontent_recruit12th
-                    text-black text-[11px] font-normal font-[Galmuri9] leading-[10.16px]'>
+                    <div className='subcontent_recruit12th' style={{ marginTop: '11px' }}>
 
                       아기사자 new!</div>
 
-                    <div className='subcontent_recruit12th
-                    text-black text-[11px] font-normal font-[Galmuri9] leading-[10.16px] mt-2'>
+                    <div className='subcontent_recruit12th' style={{ marginTop: '7px' }}>
 
                       00.00 ~ 00.00</div>
 
-                    <div className='subcontent_recruit12th
-                    text-black text-[11px] font-normal font-[Galmuri9] leading-[10.16px] mt-2'>
+                    <div className='subcontent_recruit12th' style={{ marginTop: '7px' }}>
 
                       테킷 VOD</div>
 
@@ -171,16 +157,15 @@ function Home() {
               </div>
 
 
-              <div className="flex-1 place-self-center home-overlay_pic ml-7">
+              {/* 사진 api받고 출력하기 */}
+              <div className="home-overlay_pic ">
                 <div className='home-overlay_pic_text'>멋쟁이사자처럼 대학 11주년 해커톤.png</div>
                 <img className src="image/11th_pic.png" />
+                {/*<img className src={`${item.name}`} alt={`Image for ${item.name}`} />*/}
 
                 {/* 로고 글자 */}
-                <img className="absolute bottom-0 right-0 mb-3 mr-3 w-[300px] h-[23px]" src={likelion_letter_logo} />
-
+                <img className="home-overlay_logo" src={likelion_letter_logo} />
               </div>
-
-
 
             </div>
 
@@ -194,53 +179,50 @@ function Home() {
         <div className='projectimgBox' >
 
           {/* 상단 */}
-          <div class="relative w-[1017px] h-[113px] bg-violet-950 rounded-[43px]">
-            <div className='absolute ml-10 mt-4
-             text-white text-2xl font-[Galmuri9] font-normal first-letter: tracking-wide placeholder:littletitle'>
+          <div class="projectimgBox_top">
+            <div className='projectimgBox_top_text'>
               건국대학교 멋쟁이사자처럼</div>
           </div>
 
 
 
           {/* 하단 */}
-          <div className="relative -mt-12 
-            w-[1017px] h-[772px] rounded-b-lg bg-black">
-            <div className="flex items-center justify-center p-7
-               text-white littlesubtitle text-4xl font-normal font-[Galmuri9] tracking-widest">
+          <div className="projectimgBox_down">
+            <div className="projectimgBox_down_title">
               내 손으로 배포까지!</div>
-            <div className="ml-10 my-6
-           text-white text-[28px] font-normal font-[Galmuri9] tracking-wider ">
+            <div className="projectimgBox_down_subtitle">
               <div> &gt;&gt; 11기 멋사 중앙 해커톤</div>
               <div> &gt;&gt; Project 모음집</div>
             </div>
 
 
-
-            <div className="ml-10 grid grid-cols-1 gap-x-6 gap-y-6 
-            sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+            {/* 준용이가 구현해야 할 api파트  */}
+            <div className="projectimgBox_down_projects">
 
               {/* 프로젝트1 */}
               <div class="projectgrid">
-                <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
+                <div class="projectgrid_form">
 
-                  <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
+                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
                 </div>
-                < div className='mx-auto px-4 py-4'>
-                  <img src='/image/image_16.png' alt='project_img' />
-                  <div className='text-white text-center py-6'>
+                < div className='projectgrid_contentbox'>
+                  <div className='projectgrid_contentbox_title'>
+                    <img src='/image/image_16.png' alt='project_img' /></div>
+                  <div className='projectgrid_contentbox_content'>
                     프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
                 </div>
               </div>
 
               {/* 프로젝트2 */}
               <div class="projectgrid">
-                <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
+                <div class="projectgrid_form">
 
-                  <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
+                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
                 </div>
-                < div className='mx-auto px-4 py-4'>
-                  <img src='/image/image_16.png' alt='project_img' />
-                  <div className='text-white text-center py-6'>
+                < div className='projectgrid_contentbox'>
+                  <div className='projectgrid_contentbox_title'>
+                    <img src='/image/image_16.png' alt='project_img' /></div>
+                  <div className='projectgrid_contentbox_content'>
                     프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
                 </div>
               </div>
@@ -248,73 +230,60 @@ function Home() {
 
               {/* 프로젝트3*/}
               <div class="projectgrid">
-                <div class="w-[267.57px] h-[44.47px] bg-white border-2 border-white">
+                <div class="projectgrid_form">
 
-                  <div class="flex justify-center items-center text-black text-base font-normal font-['Galmuri9'] tracking-wide">[ 프로젝트명 ]</div>
+                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
                 </div>
-                < div className='mx-auto px-4 py-4'>
-                  <img src='/image/image_16.png' alt='project_img' />
-                  <div className='text-white text-center py-6'>
+                < div className='projectgrid_contentbox'>
+                  <div className='projectgrid_contentbox_title'>
+                    <img src='/image/image_16.png' alt='project_img' /></div>
+                  <div className='projectgrid_contentbox_content'>
                     프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
                 </div>
               </div>
 
             </div>
 
-            <div className="ml-10 mt-10 text-yellow-300 text-[28px] font-normal font-[Galmuri9] tracking-wider flex items-center">
+            <div className="projectgrid_detail">
               &gt;&gt; 프로젝트를 자세히 보시겠습니까?
               <img src="image/type1.png" className='yellowcursor' alt='cursor' style={{ marginLeft: '2px' }} />
             </div>
 
 
-
-            {/*<div class="viewdetail">
-              [자세히 보러가기]</div> */}
-
             <div className="detailLink">
               [자세히 보러가기]
             </div>
-
-            {/* <div class=" text-white text-4xl font-normal font-[Galmuri9] tracking-widest 
-            float-right mr-10">
-              [자세히 보러가기]</div> */}
 
           </div>
         </div>
 
 
         {/*다양한 트랙별로 기획부터 개발까지*/}
-        <div className='flex flex-col mt-72'>
+        <div className='trackDetailZone'>
 
 
           <div>
-            <img src="image/free-icon-squirell.png" className='squirellicon float-right mr-32' />
+            <img src="image/free-icon-squirell.png" className='squirellicon' />
           </div>
 
-          <div className="flex w-[800px] h-[88px] bg-white rounded-[44px] mx-auto">
-            <img src="image/free-icon-search.png" className='p-5 searchicon' />
-            <div className='flex items-center justify-center
-            text-black text-4xl font-normal font-[Galmuri9] tracking-widest 
-            mx-5'>{typingText}</div>
+          <div className="trackDetailZone_whiteRbox">
+            <img src="image/free-icon-search.png" className='searchicon' />
+            <div className='trackDetailZone_whiteRbox_title'>{typingText}</div>
           </div>
 
 
-          <div className='forbigoverlay'>
+          <div className='trackDetailZone_overlay'>
 
             {/*yellowZone*/}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-1 lg:grid-cols-3
-          place-items-center mt-36">
+            <div className="trackDetailZone_yz_guideLine">
 
               {/* 노란색 섹션 - 1 */}
-              {/* <div className='flex flex-col'> */}
               <div className='yz'>
                 <div class="yz_container1">
-                  <div className="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-                  <div className="-mt-3 w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
-                  flex items-center justify-center">
-                    <div className="w-[194.49px] h-[32.91px] text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                  <div className="yz_top">  </div>
+                  <div className="yz_down">
+                    <div className="yz_text">
                       기획/디자인</div>
-
                   </div>
                 </div>
 
@@ -327,19 +296,19 @@ function Home() {
 
 
                   <div class="content-container-1">
-                    <div className="part">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    <div className="content_part">
+                      <div className="content_part_title">
                         기획/디자인?</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        기획/디자인 트랙은 창의적인 시각과 전략적인 기획을 통해 사용자 경험을 디자인하는 역할을 맡습니다. UX/UI 디자인 원칙을 기반으로 웹 애플리케이션의 사용자 플로우를 기획하고, 감각적인 디자인으로 사용자와의 상호작용을 최적화합니다. 또한, 팀과의 협업을 통해 아이디어를 구체화하고 시각적 표현으로 프로젝트를 완성합니다.
                       </div><br />
                     </div>
 
                     <div className="curriculum">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                      <div className="content_part_title">
                         커리큘럼</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        공통세션 기간동안 개발자와의 협업을 위한 기본적인 html, css의 동작을 이해하고, 기획 프로세스 및 기획서 작성 과정, IA 설계, 피그마를 통한 디자인 기초까지 기획 및 디자인의 전반적인 과정을 학습합니다.
                       </div><br />
                     </div>
                   </div>
@@ -355,10 +324,9 @@ function Home() {
               <div className='yz'>
 
                 <div class="yz_container2">
-                  <div className="w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-                  <div className="-mt-3 w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
-                  flex items-center justify-center">
-                    <div className=" text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                  <div className="yz_top">  </div>
+                  <div className="yz_down">
+                    <div className="yz_text">
                       프론트엔드</div>
                   </div>
                 </div>
@@ -373,19 +341,19 @@ function Home() {
 
 
                   <div class="content-container-2">
-                    <div className="part">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    <div className="content_part">
+                      <div className="content_part_title">
                         프론트엔드?</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        프론트엔드는 웹 페이지의 사용자 인터페이스를 개발하며, 클라이언트 사이드 로직을 구현하여 동적인 기능을 제공합니다. 또한, 사용자 인증, 데이터 통신, 보안 등 다양한 측면에서 웹 애플리케이션의 전반적인 경험을 디자인하고 구현합니다.
                       </div><br />
                     </div>
 
                     <div className="curriculum">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                      <div className="content_part_title">
                         커리큘럼</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        공통세션 과정동안 git, html, css에 대한 전반적인 지식을 배우고, javascript를 기반으로 한 React 라이브러리를 사용하여 UI 구성 및 서버와의 api통신까지 한 학기동안 진행합니다.
                       </div><br />
                     </div>
                   </div>
@@ -399,10 +367,9 @@ function Home() {
 
 
                 <div class="yz_container3">
-                  <div className=" w-[83.03px] h-[29.92px] bg-yellow-400 rounded-xl">  </div>
-                  <div className="-mt-3 w-[285px] h-[184.02px] bg-yellow-400 rounded-[9px]
-                    flex items-center justify-center">
-                    <div className="text-black text-4xl font-normal font-['Galmuri9'] leading-[33.24px]">
+                  <div className="yz_top">  </div>
+                  <div className="yz_down">
+                    <div className="yz_text">
                       백엔드</div>
 
                   </div>
@@ -418,19 +385,19 @@ function Home() {
                   </div>
 
                   <div class="content-container-3">
-                    <div className="part">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                    <div className="content_part">
+                      <div className="content_part_title">
                         백엔드?</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        프론트엔드의 요청을 바탕으로 데이터베이스에 정보를 저장하고, 필요한 작업을 거쳐 원하는 결과를 반환하는 역할을 수행합니다. 또한, 유효성 체크, 토큰 발급등을 통한 로그인, 회원가입 과정에서의 보안도 경험합니다.
                       </div><br />
                     </div>
 
                     <div className="curriculum">
-                      <div className="text-black text-4xl font-normal font-['Galmuri9'] tracking-widest">
+                      <div className="content_part_title">
                         커리큘럼</div> <br />
-                      <div className="w-[715.98px] text-black text-xl font-normal font-['Galmuri9'] tracking-wide">
-                        어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명 어쩌구 저쩌구 설명
+                      <div className="content_part_content">
+                        공통세션 과정동안 git, html, css에 대한 전반적인 지식을 배우고, 주력 언어에 따라 Django와 Springboot 라이브러리를 바탕으로 한 CRUD, 로그인, 회원가입을 통해 서비스를 만들고, API를 만들어 프론트엔드와 통신하는 과정까지 학습합니다.
                       </div><br />
                     </div>
                   </div>
