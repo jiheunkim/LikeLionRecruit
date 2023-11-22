@@ -107,6 +107,10 @@ function SliderDetail() {
   const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (item) {
       // http get 요청하기
       const fetchData = async () => {
