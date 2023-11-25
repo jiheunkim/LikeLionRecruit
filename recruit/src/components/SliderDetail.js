@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 const StyledImage = styled.img`
   width: 1244px;
-  height: 661px;
+  height: 100%;
   object-fit: cover;
   margin-bottom: 50px;
 `;
