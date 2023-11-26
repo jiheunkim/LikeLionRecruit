@@ -17,6 +17,8 @@ function Home() {
   const [isExploding, setIsExploding] = React.useState(false);
   const [imageURL, setImageURL] = useState('');
   const [currentNavItem, setCurrentNavItem] = useState([]);
+  const [periodInfo, setPeriodInfo] = useState(null);
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
 
   const navigation = [
     { name: '기획 디자인', href: 'api/images/pmanddesignimage/1', current: false },
@@ -97,6 +99,10 @@ function Home() {
       fetchSectionImage(currentNavItem);
     }
 
+    if (!periodInfo) {
+      getPeriodInfo();
+    }
+
     let currentIndex = 0;
     let currentText = textArray[currentIndex];
 
@@ -113,8 +119,33 @@ function Home() {
     }, typingSpeed);
 
     return () => clearInterval(typingInterval);  // 컴포넌트가 언마운트될 때 타이머 정리
-  }, [textArray, currentNavItem]);
+  }, [textArray, currentNavItem, periodInfo]);
 
+  const getPeriodInfo = async () => {
+    try {
+      const apiPath = `http://3.37.130.241:8080/api/recruitment/schedule/`;
+      const response = await fetch(apiPath);
+      const data = await response.json();
+      setPeriodInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    return `${formattedDate}${formattedDayofWeek}`;
+  };
+
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+    const formattedDayofWeek = `(${days[date.getDay()]})`;
+    const formattedTime = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${formattedDate}${formattedDayofWeek} ${formattedTime}`;
+  };
 
   return (
 
@@ -428,13 +459,13 @@ function Home() {
                 선발 일정</div>
               <div className='content2'>
                 <div className="br-gap2" style={{ marginBottom: '63px' }}>
-                  서류 지원 : 24.00.00(월) ~ 24.00.00(월) 00:00</div>
+                  서류 지원 : {formatDate(periodInfo.applicationStartDate)} ~ {formatDate2(periodInfo.applicationEndDate)}</div>
                 <div className="br-gap2" style={{ marginBottom: '63px' }}>
-                  1차 합격 발표: 24.00.00(월)</div>
+                  1차 합격 발표: {formatDate(periodInfo.applicationResultAnnouncementDate)}</div>
                 <div className='br-gap2' style={{ marginBottom: '63px' }}>
-                  2차 면접: 24.00.00(화) - 24.00.00(목)</div>
+                  2차 면접: {formatDate(periodInfo.interviewStartDate)} ~ {formatDate(periodInfo.interviewEndDate)}</div>
                 <div className="br-gap2">
-                  최종 발표: 24.00.00(금)</div>
+                  최종 발표: {formatDate(periodInfo.finalResultAnnouncementDate)}</div>
               </div>
             </div>
 

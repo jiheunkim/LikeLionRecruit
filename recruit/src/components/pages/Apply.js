@@ -119,17 +119,6 @@ function Apply() {
   useEffect(() => {
     if (!periodInfo) {
       getPeriodInfo();
-      // const dummyData = {
-      //   id: 1,
-      //   applicationStartDate: "2023-11-18T10:00:00",
-      //   applicationEndDate: "2023-12-31T23:59:59",
-      //   applicationResultAnnouncementDate: "2024-01-15T12:00:00",
-      //   interviewStartDate: "2024-02-20T14:00:00",
-      //   interviewEndDate: "2024-02-25T23:59:59",
-      //   finalResultAnnouncementDate: "2024-03-31T15:00:00"
-      // };  
-    
-      // setPeriodInfo(dummyData);
     }
   }, [periodInfo]);
 
