@@ -148,7 +148,7 @@ function Home() {
   };
 
   return (
-
+    <>
     <div className='home-page'>
       <div className='borderline'>
 
@@ -491,9 +491,10 @@ function Home() {
             </div>
           </div>
         </div>
-        <Footer></Footer>
       </div >
     </div >
+    <Footer></Footer>
+    </>
   );
 }
 
