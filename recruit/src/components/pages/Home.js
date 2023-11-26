@@ -5,7 +5,7 @@ import './Home.css';
 import likelion_letter_logo from '../pages/LIKELION_letter_logo.png';
 import classNames from 'classnames';
 import axios from 'axios';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ConfettiExplosion from 'react-confetti-explosion';
 
 function Home() {
@@ -33,40 +33,71 @@ function Home() {
   }, []);
 
   const handleGachaClick = () => {
-  let count = 0;
-  let intervalTime = 10; // 시작 간격을 10ms로 설정
-  const maxCount = 10; // 총 시도 횟수
-  const intervalIncrease = 25; // 각 호출마다 간격 증가량
+    let count = 0;
+    let intervalTime = 10; // 시작 간격을 10ms로 설정
+    const maxCount = 10; // 총 시도 횟수
+    const intervalIncrease = 25; // 각 호출마다 간격 증가량
 
-  const fetchInterval = () => {
-    setTimeout(async () => {
-      await fetchProjects();
-      count += 1;
-      if (count < maxCount) {
-        intervalTime += intervalIncrease; // 간격을 점점 늘린다
-        fetchInterval(); // 재귀적으로 함수를 다시 호출
-      } else {
-        // 마지막 호출일 때 폭죽 효과를 트리거
-        setIsExploding(true);
-        // 1초 후에 폭죽 효과를 멈춘다
-        setTimeout(() => {
-          setIsExploding(false);
-        }, 2000);
-      }
-    }, intervalTime);
+    const fetchInterval = () => {
+      setTimeout(async () => {
+        await fetchProjects();
+        count += 1;
+        if (count < maxCount) {
+          intervalTime += intervalIncrease; // 간격을 점점 늘린다
+          fetchInterval(); // 재귀적으로 함수를 다시 호출
+        } else {
+          // 마지막 호출일 때 폭죽 효과를 트리거
+          setIsExploding(true);
+          // 1초 후에 폭죽 효과를 멈춘다
+          setTimeout(() => {
+            setIsExploding(false);
+          }, 2000);
+        }
+      }, intervalTime);
+    };
+
+    fetchInterval(); // 최초 실행
   };
 
-  fetchInterval(); // 최초 실행
-};
+  const [imageURL, setImageURL] = useState('');
+  const [currentNavItem, setCurrentNavItem] = useState('ideathon'); // Default to 'ideathon'
 
   const navigation = [
-    { name: '기획 디자인', href: '/api/images/pmanddesignimage/1', current: false },
-    { name: '프론트엔드', href: '/api/images/frontend/1', current: false },
-    { name: '백엔드', href: '/api/images/backend/1', current: false },
-    { name: '아이디어톤', href: '/api/images/ideathon/1', current: false },
-    { name: '중앙 해커톤', href: '/api/images/hackathon/1', current: true },
+    { name: '기획 디자인', href: 'http://3.37.130.241:8080/api/images/pmanddesignimage/1', current: false },
+    { name: '프론트엔드', href: 'http://3.37.130.241:8080/api/images/frontend/1', current: false },
+    { name: '백엔드', href: 'http://3.37.130.241:8080/api/images/backend/1', current: false },
+    { name: '아이디어톤', href: 'http://3.37.130.241:8080/api/images/ideathon/1', current: false },
+    { name: '중앙 해커톤', href: 'http://3.37.130.241:8080/api/images/hackathon/1', current: true },
+  ];
 
-  ]
+  const handleClick = async () => {
+    const selectedNavItem = navigation.find((item) => item.name === name);
+    setCurrentNavItem(name);
+
+    try {
+      const apiPath = selectedNavItem.href;
+      const response = await fetch(apiPath);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setImageURL(data.photo); // 이미지 URL을 state에 업데이트
+      //console.log(setImageURL);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // navigation 배열이 변경될 때마다 useEffect를 사용하여 handleClick 호출
+  useEffect(() => {
+    const currentNavItem = navigation.find((item) => item.current)?.name;
+    handleClick(currentNavItem);
+  }, [navigation]);
+
+
 
 
   useEffect(() => {
@@ -163,8 +194,10 @@ function Home() {
                             <a
                               href={item.href}
                               className={classNames(
-                                'subcontent_list_group'
-                              )}
+                                'subcontent_list_group', {
+                                'subcontent_list_active': item.name === currentNavItem,
+                              })}
+                              onClick={() => handleClick(item.name)}
                             >
                               <span className="subcontent_list_style">
                                 {item.name}
@@ -205,9 +238,8 @@ function Home() {
 
               {/* 사진 api받고 출력하기 */}
               <div className="home-overlay_pic ">
-                <div className='home-overlay_pic_text'>멋쟁이사자처럼 대학 11주년 해커톤.png</div>
-                <img className src="image/11th_pic.png" />
-                {/*<img className src={`${item.name}`} alt={`Image for ${item.name}`} />*/}
+                <div className='home-overlay_pic_text'>{currentNavItem} 사진</div>
+                <img src={imageURL} alt='project_img' width='457' height='275' />
 
                 {/* 로고 글자 */}
                 <img className="home-overlay_logo" src={likelion_letter_logo} />
@@ -252,15 +284,15 @@ function Home() {
             <div className="projectimgBox_down_projects">
               {projects.map((project, index) => (
                 <Link key={index}
-                      to={`/projectdetail/11/${project.team_name}`}
-                      state={{ project: project }}>
+                  to={`/projectdetail/11/${project.team_name}`}
+                  state={{ project: project }}>
                   <div className="projectgrid">
                     <div className="projectgrid_form">
                       <div className="projectgrid_title">[ {project.p_name} ]</div>
                     </div>
                     <div className='projectgrid_contentbox'>
                       <div className='projectgrid_contentbox_title'>
-                        <img src={`https:/${project.thumbnail}`} alt='project_img' width='221' height='152'/>
+                        <img src={`https:/${project.thumbnail}`} alt='project_img' width='221' height='152' />
                       </div>
                       <div className='projectgrid_contentbox_content'>
                         프로젝트 설명 어쩌구 저쩌구 //... 상세 설명
@@ -277,10 +309,10 @@ function Home() {
               <img src="image/type1.png" className='yellowcursor' alt='cursor' style={{ marginLeft: '2px' }} />
             </div>
 
-            <Link to='/exhibition' className={`nav-links ${activeLink === '/exhibition' ? 'active' : ''}`}>
-                <div className="detailLink">
-                  [자세히 보러가기]
-                </div>
+            <Link to='/exhibition' className={` ${activeLink === '/exhibition' ? 'active' : ''}`}>
+              <div className="detailLink">
+                [자세히 보러가기]
+              </div>
             </Link>
 
           </div>
@@ -526,4 +558,5 @@ function Home() {
 }
 
 export default Home;
+
 
