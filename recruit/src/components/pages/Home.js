@@ -88,11 +88,14 @@ function Home() {
   };
 
   useEffect(() => {
+    // 컴포넌트 마운트 시 한 번 호출
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
     if (currentNavItem) {
       fetchSectionImage(currentNavItem);
     }
-
-    fetchProjects();
 
     let currentIndex = 0;
     let currentText = textArray[currentIndex];
