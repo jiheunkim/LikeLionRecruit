@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../../App.css';
 import Footer from '../Footer';
 import './Home.css';
-import likelion_letter_logo from '../pages/LIKELION_letter_logo.png';
 import classNames from 'classnames';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -16,6 +15,17 @@ function Home() {
   const typingSpeed = 100;  // 타이핑 속도 (밀리초)
   const [projects, setProjects] = useState([]);
   const [isExploding, setIsExploding] = React.useState(false);
+  const [imageURL, setImageURL] = useState('');
+  const [currentNavItem, setCurrentNavItem] = useState([]);
+
+  const navigation = [
+    { name: '기획 디자인', href: 'api/images/pmanddesignimage/1', current: false },
+    { name: '프론트엔드', href: 'api/images/frontend/1', current: false },
+    { name: '백엔드', href: 'api/images/backend/1', current: false },
+    { name: '아이디어톤', href: 'api/images/ideathon/1', current: false },
+    { name: '중앙 해커톤', href: 'api/images/hackathon/1', current: true },
+  ];
+  
 
   // API 호출 함수를 useEffect 외부로 이동
   const fetchProjects = async () => {
@@ -27,10 +37,23 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    // 컴포넌트 마운트 시 한 번 호출
-    fetchProjects();
-  }, []);
+  const fetchSectionImage = async (navItem) => {
+    if (navItem.href != undefined) {
+      try {
+        const response = await axios.get(`http://3.37.130.241:8080/${navItem.href}`);
+        setImageURL(response.data.photo);
+      } catch (error) {
+        console.error('Error fetching projects: ', error);
+      }
+    } else {
+      try {
+        const response = await axios.get(`http://3.37.130.241:8080/api/images/hackathon/1`);
+        setImageURL(response.data.photo);
+      } catch (error) {
+        console.error('Error fetching projects: ', error);
+      }
+    }
+  };
 
   const handleGachaClick = () => {
     let count = 0;
@@ -59,48 +82,18 @@ function Home() {
     fetchInterval(); // 최초 실행
   };
 
-  const [imageURL, setImageURL] = useState('');
-  const [currentNavItem, setCurrentNavItem] = useState('ideathon'); // Default to 'ideathon'
-
-  const navigation = [
-    { name: '기획 디자인', href: 'http://3.37.130.241:8080/api/images/pmanddesignimage/1', current: false },
-    { name: '프론트엔드', href: 'http://3.37.130.241:8080/api/images/frontend/1', current: false },
-    { name: '백엔드', href: 'http://3.37.130.241:8080/api/images/backend/1', current: false },
-    { name: '아이디어톤', href: 'http://3.37.130.241:8080/api/images/ideathon/1', current: false },
-    { name: '중앙 해커톤', href: 'http://3.37.130.241:8080/api/images/hackathon/1', current: true },
-  ];
-
-  const handleClick = async () => {
+  const handleClick = (name) => {
     const selectedNavItem = navigation.find((item) => item.name === name);
-    setCurrentNavItem(name);
-
-    try {
-      const apiPath = selectedNavItem.href;
-      const response = await fetch(apiPath);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setImageURL(data.photo); // 이미지 URL을 state에 업데이트
-      //console.log(setImageURL);
-
-    } catch (error) {
-      console.error(error);
-    }
+    setCurrentNavItem(selectedNavItem);
   };
 
-  // navigation 배열이 변경될 때마다 useEffect를 사용하여 handleClick 호출
   useEffect(() => {
-    const currentNavItem = navigation.find((item) => item.current)?.name;
-    handleClick(currentNavItem);
-  }, [navigation]);
+    if (currentNavItem) {
+      fetchSectionImage(currentNavItem);
+    }
 
+    fetchProjects();
 
-
-
-  useEffect(() => {
     let currentIndex = 0;
     let currentText = textArray[currentIndex];
 
@@ -117,30 +110,24 @@ function Home() {
     }, typingSpeed);
 
     return () => clearInterval(typingInterval);  // 컴포넌트가 언마운트될 때 타이머 정리
-  }, [textArray]);
+  }, [textArray, currentNavItem]);
 
 
   return (
 
     <div className='home-page'>
-
       <div className='borderline'>
-
 
         {/* 건국대학교 멋쟁이 사자처럼 12기 모집 */}
         <div className='homeimgBox_1'>
-
           <img src="image/link-Box.png" className='home_group19' />
-
           <div className='home-overlay-title_1'>
             <div className='box_text_1' >건국대학교<br></br>멋쟁이사자처럼<br></br>12기 모집</div>
           </div>
-
           {/*아이콘*/}
           <div>
             <img src="image/free-icon-heart.png" className='iconheart' />
           </div>
-
           <div>
             <img src="image/free-icon-start-up.png" className='iconstartup' />
           </div>
@@ -154,30 +141,21 @@ function Home() {
 
           {/* 두번째 homeimgBox */}
           <div className="homeimgBox_2_white" >
-
-
             {/*두번째 homeimgBox_상단바  */}
             <div className="homeimgBox_2_white_top">
-
               <div className="homeimgBox_2_white_top_circles">
                 <div className="circles_1" />
                 <div className="circles_2" />
                 <div className="circles_3" />
               </div>
-
             </div>
 
             {/* 두번째 homeimgBox_상단바_아래  */}
             <div class='homeimgBox_2_white_down'>
-
               {/* 회색 가로 박스 */}
               <div className="graySidebar">
-
-
                 <div class='Sidebar' style={{ marginTop: '20px' }}>
-
                   <div className='home-overlay-subcontent_title' >
-
                     < div className='subcontent_title_1'>
                       LIKELION </div>
                     {/* 데이터 처리 */}
@@ -186,69 +164,47 @@ function Home() {
                         <div style={{ marginTop: '7px' }}>건국대학교</div>
                         <div style={{ marginTop: '7px' }}>멋쟁이사자처럼</div>
                       </div>
-
-
                       <ul className="subcontentList"> {/* 리스트 스타일 제거 */}
                         {navigation.map((item) => (
                           <li key={item.name}>
-                            <a
-                              href={item.href}
+                            <div
                               className={classNames(
                                 'subcontent_list_group', {
-                                'subcontent_list_active': item.name === currentNavItem,
+                                'subcontent_list_active': item.name === currentNavItem.name,
                               })}
                               onClick={() => handleClick(item.name)}
                             >
                               <span className="subcontent_list_style">
                                 {item.name}
                               </span>
-                            </a>
+                            </div>
                           </li>
                         ))}
                       </ul>
-
-
                     </div>
-
                   </div>
 
                   <div className='home-overlay-subcontent_content'>
                     <div className='subcontent_title_2' style={{ marginTop: '24px' }}>
                       12기 모집</div>
-
                     <div className='subcontent_recruit12th' style={{ marginTop: '11px' }}>
-
                       아기사자 new!</div>
-
                     <div className='subcontent_recruit12th' style={{ marginTop: '7px' }}>
-
                       00.00 ~ 00.00</div>
-
                     <div className='subcontent_recruit12th' style={{ marginTop: '7px' }}>
-
                       테킷 VOD</div>
-
-
-
                   </div>
                 </div>
-
               </div>
-
 
               {/* 사진 api받고 출력하기 */}
               <div className="home-overlay_pic ">
-                <div className='home-overlay_pic_text'>{currentNavItem} 사진</div>
+                <div className='home-overlay_pic_text'>{currentNavItem.name} 사진</div>
                 <img src={imageURL} alt='project_img' width='457' height='275' />
-
                 {/* 로고 글자 */}
-                <img className="home-overlay_logo" src={likelion_letter_logo} />
+                <img className="home-overlay_logo" src='/image/LIKELION_letter_logo.png' />
               </div>
-
             </div>
-
-
-
           </div>
         </div>
 
@@ -278,9 +234,6 @@ function Home() {
               <div> &gt;&gt; Project 모음집</div>
             </div>
 
-
-
-            {/* 준용이가 구현해야 할 api파트  */}
             <div className="projectimgBox_down_projects">
               {projects.map((project, index) => (
                 <Link key={index}
@@ -295,7 +248,7 @@ function Home() {
                         <img src={`https:/${project.thumbnail}`} alt='project_img' width='221' height='152' />
                       </div>
                       <div className='projectgrid_contentbox_content'>
-                        프로젝트 설명 어쩌구 저쩌구 //... 상세 설명
+                        프로젝트 보러가기!
                       </div>
                     </div>
                   </div>
@@ -321,23 +274,16 @@ function Home() {
 
         {/*다양한 트랙별로 기획부터 개발까지*/}
         <div className='trackDetailZone'>
-
-
           <div>
             <img src="image/free-icon-squirell.png" className='squirellicon' />
           </div>
-
           <div className="trackDetailZone_whiteRbox">
             <img src="image/free-icon-search.png" className='searchicon' />
             <div className='trackDetailZone_whiteRbox_title'>{typingText}</div>
           </div>
-
-
           <div className='trackDetailZone_overlay'>
-
             {/*yellowZone*/}
             <div className="trackDetailZone_yz_guideLine">
-
               {/* 노란색 섹션 - 1 */}
               <div className='yz'>
                 <div class="yz_container1">
@@ -347,15 +293,12 @@ function Home() {
                       기획/디자인</div>
                   </div>
                 </div>
-
                 <div className="overlay-div-1">
                   <div class="svg1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="869" height="672" viewBox="0 0 869 672" fill="none">
                       <path d="M67 672L0 0H285L869 286L67 672Z" fill="#D9D9D9" />
                     </svg>
                   </div>
-
-
                   <div class="content-container-1">
                     <div className="content_part">
                       <div className="content_part_title">
@@ -364,7 +307,6 @@ function Home() {
                         기획/디자인 트랙은 창의적인 시각과 전략적인 기획을 통해 사용자 경험을 디자인하는 역할을 맡습니다. UX/UI 디자인 원칙을 기반으로 웹 애플리케이션의 사용자 플로우를 기획하고, 감각적인 디자인으로 사용자와의 상호작용을 최적화합니다. 또한, 팀과의 협업을 통해 아이디어를 구체화하고 시각적 표현으로 프로젝트를 완성합니다.
                       </div><br />
                     </div>
-
                     <div className="curriculum">
                       <div className="content_part_title">
                         커리큘럼</div> <br />
@@ -374,16 +316,10 @@ function Home() {
                     </div>
                   </div>
                 </div>
-
-
-
               </div>
-
-
 
               {/* 노란색 섹션 - 2*/}
               <div className='yz'>
-
                 <div class="yz_container2">
                   <div className="yz_top">  </div>
                   <div className="yz_down">
@@ -391,16 +327,12 @@ function Home() {
                       프론트엔드</div>
                   </div>
                 </div>
-
-
                 <div className="overlay-div-2">
                   <div class="svg2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="802" height="264" viewBox="0 0 802 264" fill="none">
                       <path d="M0 264L258 0H543L802 264H0Z" fill="#D9D9D9" />
                     </svg>
                   </div>
-
-
                   <div class="content-container-2">
                     <div className="content_part">
                       <div className="content_part_title">
@@ -409,7 +341,6 @@ function Home() {
                         프론트엔드는 웹 페이지의 사용자 인터페이스를 개발하며, 클라이언트 사이드 로직을 구현하여 동적인 기능을 제공합니다. 또한, 사용자 인증, 데이터 통신, 보안 등 다양한 측면에서 웹 애플리케이션의 전반적인 경험을 디자인하고 구현합니다.
                       </div><br />
                     </div>
-
                     <div className="curriculum">
                       <div className="content_part_title">
                         커리큘럼</div> <br />
@@ -418,33 +349,24 @@ function Home() {
                       </div><br />
                     </div>
                   </div>
-
                 </div>
-
               </div>
 
               {/* 노란색 섹션 - 3*/}
               <div className='yz'>
-
-
                 <div class="yz_container3">
                   <div className="yz_top">  </div>
                   <div className="yz_down">
                     <div className="yz_text">
                       백엔드</div>
-
                   </div>
                 </div>
-
                 <div class="overlay-div-3">
-
-
                   <div class="svg3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="898" height="650" viewBox="0 0 898 650" fill="none">
                       <path d="M0 264L613 0H898L802 650L0 264Z" fill="#D9D9D9" />
                     </svg>
                   </div>
-
                   <div class="content-container-3">
                     <div className="content_part">
                       <div className="content_part_title">
@@ -453,7 +375,6 @@ function Home() {
                         프론트엔드의 요청을 바탕으로 데이터베이스에 정보를 저장하고, 필요한 작업을 거쳐 원하는 결과를 반환하는 역할을 수행합니다. 또한, 유효성 체크, 토큰 발급등을 통한 로그인, 회원가입 과정에서의 보안도 경험합니다.
                       </div><br />
                     </div>
-
                     <div className="curriculum">
                       <div className="content_part_title">
                         커리큘럼</div> <br />
@@ -462,15 +383,10 @@ function Home() {
                       </div><br />
                     </div>
                   </div>
-
                 </div>
-
-
               </div>
-
             </div>
           </div>
-
 
           <div className='behindoverlay'>
             {/*whiteboxzone */}
@@ -484,7 +400,6 @@ function Home() {
                 <span className='textflow'>♥12기 아기사자 신규 모집♥</span>
               </div>
             </div>
-
 
             {/* recruit */}
             <div className='recruit' >
@@ -503,7 +418,6 @@ function Home() {
               </div>
             </div>
 
-
             {/*select-schedule*/}
             <div className='select-schedule'>
               {/* 선발일정 */}
@@ -520,7 +434,6 @@ function Home() {
                   최종 발표: 24.00.00(금)</div>
               </div>
             </div>
-
 
             {/*activity-schedule*/}
             <div className='activity-schedule'>
@@ -540,21 +453,12 @@ function Home() {
                   중앙 해커톤 : 24년 7월 - 24년 8월</div>
               </div>
             </div>
-
           </div>
         </div>
-
         <Footer></Footer>
-
       </div >
-
-
-
     </div >
-
-
   );
-
 }
 
 export default Home;
