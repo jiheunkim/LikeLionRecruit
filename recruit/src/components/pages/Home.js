@@ -453,21 +453,23 @@ function Home() {
             </div>
 
             {/*select-schedule*/}
-            <div className='select-schedule'>
-              {/* 선발일정 */}
-              <div className='title2' style={{ marginBottom: '37px' }}>
-                선발 일정</div>
-              <div className='content2'>
-                <div className="br-gap2" style={{ marginBottom: '63px' }}>
-                  서류 지원 : {formatDate(periodInfo.applicationStartDate)} ~ {formatDate2(periodInfo.applicationEndDate)}</div>
-                <div className="br-gap2" style={{ marginBottom: '63px' }}>
-                  1차 합격 발표: {formatDate(periodInfo.applicationResultAnnouncementDate)}</div>
-                <div className='br-gap2' style={{ marginBottom: '63px' }}>
-                  2차 면접: {formatDate(periodInfo.interviewStartDate)} ~ {formatDate(periodInfo.interviewEndDate)}</div>
-                <div className="br-gap2">
-                  최종 발표: {formatDate(periodInfo.finalResultAnnouncementDate)}</div>
+            {periodInfo && (
+              <div className='select-schedule'>
+                {/* 선발일정 */}
+                <div className='title2' style={{ marginBottom: '37px' }}>
+                  선발 일정</div>
+                <div className='content2'>
+                  <div className="br-gap2" style={{ marginBottom: '63px' }}>
+                    서류 지원 : {formatDate(periodInfo.applicationStartDate)} ~ {formatDate2(periodInfo.applicationEndDate)}</div>
+                  <div className="br-gap2" style={{ marginBottom: '63px' }}>
+                    1차 합격 발표: {formatDate(periodInfo.applicationResultAnnouncementDate)}</div>
+                  <div className='br-gap2' style={{ marginBottom: '63px' }}>
+                    2차 면접: {formatDate(periodInfo.interviewStartDate)} ~ {formatDate(periodInfo.interviewEndDate)}</div>
+                  <div className="br-gap2">
+                    최종 발표: {formatDate(periodInfo.finalResultAnnouncementDate)}</div>
+                </div>
               </div>
-            </div>
+            )}
 
             {/*activity-schedule*/}
             <div className='activity-schedule'>
