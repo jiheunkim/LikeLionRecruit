@@ -1,3 +1,11 @@
+* {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
 .main {
   font-family: "PretendardVariable";
   position: relative;
@@ -15,6 +23,36 @@
   line-height: 42.96px;
   text-align: center;
   margin-bottom: 89px;
+}
+
+.not-apply {
+  height: 100%;
+}
+
+.not-apply-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  align-items: center;
+}
+
+.not-apply-text {
+  text-align: center;
+  font-family: "PretendardVariable";
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 47.73px;
+}
+
+.not-apply-btn {
+  font-family: "PretendardVariable";
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 47.73px;
+  border: none;
+  background-color: #EDEBEB;
 }
 
 .white-box {

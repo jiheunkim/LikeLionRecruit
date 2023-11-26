@@ -21,7 +21,7 @@ function Navbar() {
 
   const checkPeriod = async () => {
     try {
-      const apiPath = `http://3.37.130.241:8080/api/data/check/`;
+      const apiPath = `http://3.37.130.241:8080/api/date/check/`;
       const response = await fetch(apiPath); // await를 사용하여 비동기적으로 데이터를 받음
       const data = await response.json();
       setPeriodCheck(data.periodCheck);
@@ -93,8 +93,7 @@ function Navbar() {
               </Link>
               </li>
               <li className='nav-item'>
-              {/* <Link to='/apply-not' className={`nav-links ${activeLink === '/apply-not' ? 'active' : ''}`}> */}
-              <Link to='/apply' className={`nav-links ${activeLink === '/apply' ? 'active' : ''}`}>
+              <Link to='/apply-not' className={`nav-links ${activeLink === '/apply-not' ? 'active' : ''}`}>
                 APPLY
               </Link>
               </li>
