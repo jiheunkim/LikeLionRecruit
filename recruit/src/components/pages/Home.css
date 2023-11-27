@@ -477,6 +477,29 @@
     ;
 }
 
+.projectgrid_gacha {
+    display: flex;
+    align-items: center;
+    margin-left: 2.5rem
+        /* 40px */
+    ;
+    margin-top: 2.5rem
+        /* 40px */
+    ;
+    --tw-text-opacity: 1;
+    color: rgb(253 224 71 / var(--tw-text-opacity));
+
+    font-size: 30px;
+    font-weight: 400;
+    font-family: Galmuri9;
+    letter-spacing: 0.05em;
+    position: absolute;
+    left: 620px;
+    bottom: 600px;
+    cursor: pointer;
+
+}
+
 .projectgrid_detail {
     display: flex;
     align-items: center;

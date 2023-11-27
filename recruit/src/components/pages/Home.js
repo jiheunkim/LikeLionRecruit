@@ -5,13 +5,59 @@ import './Home.css';
 import likelion_letter_logo from '../pages/LIKELION_letter_logo.png';
 import classNames from 'classnames';
 import axios from 'axios';
+import { Link} from 'react-router-dom';
+import ConfettiExplosion from 'react-confetti-explosion';
 
 function Home() {
+  const activeLink = location.pathname;
   //커서 깜빡이기
   const [typingText, setTypingText] = useState('');
   const textArray = ['다양한 트랙별로 기획부터 개발까지!', /* 다른 텍스트 추가 */];
   const typingSpeed = 100;  // 타이핑 속도 (밀리초)
+  const [projects, setProjects] = useState([]);
+  const [isExploding, setIsExploding] = React.useState(false);
 
+  // API 호출 함수를 useEffect 외부로 이동
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get('http://34.64.82.240:8080/random/11/');
+      setProjects(response.data);
+    } catch (error) {
+      console.error('Error fetching projects: ', error);
+    }
+  };
+
+  useEffect(() => {
+    // 컴포넌트 마운트 시 한 번 호출
+    fetchProjects();
+  }, []);
+
+  const handleGachaClick = () => {
+  let count = 0;
+  let intervalTime = 10; // 시작 간격을 10ms로 설정
+  const maxCount = 10; // 총 시도 횟수
+  const intervalIncrease = 25; // 각 호출마다 간격 증가량
+
+  const fetchInterval = () => {
+    setTimeout(async () => {
+      await fetchProjects();
+      count += 1;
+      if (count < maxCount) {
+        intervalTime += intervalIncrease; // 간격을 점점 늘린다
+        fetchInterval(); // 재귀적으로 함수를 다시 호출
+      } else {
+        // 마지막 호출일 때 폭죽 효과를 트리거
+        setIsExploding(true);
+        // 1초 후에 폭죽 효과를 멈춘다
+        setTimeout(() => {
+          setIsExploding(false);
+        }, 2000);
+      }
+    }, intervalTime);
+  };
+
+  fetchInterval(); // 최초 실행
+};
 
   const navigation = [
     { name: '기획 디자인', href: '/api/images/pmanddesignimage/1', current: false },
@@ -188,71 +234,54 @@ function Home() {
 
           {/* 하단 */}
           <div className="projectimgBox_down">
+            <div className="projectgrid_gacha" onClick={handleGachaClick}>
+              [프로젝트 가차 돌리기]
+              {isExploding && <ConfettiExplosion />}
+            </div>
             <div className="projectimgBox_down_title">
               내 손으로 배포까지!</div>
             <div className="projectimgBox_down_subtitle">
               <div> &gt;&gt; 11기 멋사 중앙 해커톤</div>
+              {isExploding && <ConfettiExplosion />}
               <div> &gt;&gt; Project 모음집</div>
             </div>
 
 
+
             {/* 준용이가 구현해야 할 api파트  */}
             <div className="projectimgBox_down_projects">
-
-              {/* 프로젝트1 */}
-              <div class="projectgrid">
-                <div class="projectgrid_form">
-
-                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
-                </div>
-                < div className='projectgrid_contentbox'>
-                  <div className='projectgrid_contentbox_title'>
-                    <img src='/image/image_16.png' alt='project_img' /></div>
-                  <div className='projectgrid_contentbox_content'>
-                    프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
-                </div>
-              </div>
-
-              {/* 프로젝트2 */}
-              <div class="projectgrid">
-                <div class="projectgrid_form">
-
-                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
-                </div>
-                < div className='projectgrid_contentbox'>
-                  <div className='projectgrid_contentbox_title'>
-                    <img src='/image/image_16.png' alt='project_img' /></div>
-                  <div className='projectgrid_contentbox_content'>
-                    프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
-                </div>
-              </div>
-
-
-              {/* 프로젝트3*/}
-              <div class="projectgrid">
-                <div class="projectgrid_form">
-
-                  <div class="projectgrid_title">[ 프로젝트명 ]</div>
-                </div>
-                < div className='projectgrid_contentbox'>
-                  <div className='projectgrid_contentbox_title'>
-                    <img src='/image/image_16.png' alt='project_img' /></div>
-                  <div className='projectgrid_contentbox_content'>
-                    프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구 프로젝트 설명 어쩌구 저쩌구</div>
-                </div>
-              </div>
-
+              {projects.map((project, index) => (
+                <Link key={index}
+                      to={`/projectdetail/11/${project.team_name}`}
+                      state={{ project: project }}>
+                  <div className="projectgrid">
+                    <div className="projectgrid_form">
+                      <div className="projectgrid_title">[ {project.p_name} ]</div>
+                    </div>
+                    <div className='projectgrid_contentbox'>
+                      <div className='projectgrid_contentbox_title'>
+                        <img src={`https:/${project.thumbnail}`} alt='project_img' width='221' height='152'/>
+                      </div>
+                      <div className='projectgrid_contentbox_content'>
+                        프로젝트 설명 어쩌구 저쩌구 //... 상세 설명
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
 
             <div className="projectgrid_detail">
               &gt;&gt; 프로젝트를 자세히 보시겠습니까?
+              {isExploding && <ConfettiExplosion />}
               <img src="image/type1.png" className='yellowcursor' alt='cursor' style={{ marginLeft: '2px' }} />
             </div>
 
-
-            <div className="detailLink">
-              [자세히 보러가기]
-            </div>
+            <Link to='/exhibition' className={`nav-links ${activeLink === '/exhibition' ? 'active' : ''}`}>
+                <div className="detailLink">
+                  [자세히 보러가기]
+                </div>
+            </Link>
 
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../App.css';
 import styled from 'styled-components';
 import Slider from '../Slider';
@@ -42,6 +42,9 @@ const TextBox = styled.div`
 function Exhibition() {
   const [activeButton, setActiveButton] = useState('11기');
   const [activeYear, setActiveYear] = useState('year11th');
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleButtonClick = (buttonName, year) => {
     setActiveButton(buttonName);

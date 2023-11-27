@@ -152,16 +152,16 @@ export default class Slider extends Component {
             key: uuidv4(),
             content: (
               <Link
-            to={{
-              pathname: `/projectdetail/${numericYear}/${item.team_name}`,
-              state: { team_name: item.team_name }
-      }}
-    >
-      <Image
-        src={`https://${item.photos[0]}`}
-        alt={item.team_name}
-      />
-    </Link>
+                        to={{
+                          pathname: `/projectdetail/${numericYear}/${item.team_name}`,
+                          state: { team_name: item.team_name }
+                  }}
+              >
+                  <Image
+                    src={`https://${item.photos[0]}`}
+                    alt={item.team_name}
+                  />
+              </Link>
 
             )
           }));
